@@ -26,14 +26,14 @@
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="/">FinalProject</a>
-      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="/" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
 
         <!--Notification Menu-->
 
         <!-- User Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+        <li class="dropdown"><a class="app-nav__item" href="/" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="/user/joinform"><i class="fa fa-cog fa-lg"></i> Join</a></li>
             <li><a class="dropdown-item" href="/user/loginform"><i class="fa fa-user fa-lg"></i> Login</a></li>
@@ -60,7 +60,8 @@
       </ul>
     </aside>
     <main class="app-content">
-
+        {% block content %}
+        {% endblock %}
     </main>
     <!-- Essential javascripts for application to work-->
     <script src="static/js/jquery-3.2.1.min.js" ></script>
