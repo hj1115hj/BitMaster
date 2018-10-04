@@ -1,0 +1,491 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <title>Vali Admin - Free Bootstrap 4 Admin Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}' >
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="/">FinalProject</a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+
+        <!--Notification Menu-->
+
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+            <li><a class="dropdown-item" href="/user/joinform"><i class="fa fa-cog fa-lg"></i> Join</a></li>
+            <li><a class="dropdown-item" href="/user/loginform"><i class="fa fa-user fa-lg"></i> Login</a></li>
+            <li><a class="dropdown-item" href="/user/logout"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name">John Doe</p>
+          <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
+        </div>
+      </div>
+     <ul class="app-menu">
+        <li><a class="app-menu__item active" href="index.html"><span class="app-menu__label">나와같은사람들의평균생활</span></a></li>
+
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><span class="app-menu__label">나 VS 나와같은사람</span></a></li>
+
+        <li><a class="app-menu__item" href="charts.html"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
+      </ul>
+    </aside>
+    <main class="app-content">
+        <!--여기에 문서를 입력하시오-->
+        <!--d-->
+        <div class="row user">
+            <div class="col-md-12">
+              <div class="profile">
+                <div class="info"><img class="user-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg">
+                  <h4>John Doe</h4>
+                  <p>FrontEnd Developer</p>
+                </div>
+                <div class="cover-image"></div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="tile p-0">
+                <ul class="nav flex-column nav-tabs user-tabs">
+
+                </ul>
+              </div>
+            </div>
+        </div>
+
+        <!--d-->
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-edit"></i> 개인정보입력 </h1>
+                <p>입력받은 개인정보를 통해 금융정보를 도출합니다</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+              <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+              <li class="breadcrumb-item">Forms</li>
+              <li class="breadcrumb-item"><a href="#">Form Components</a></li>
+            </ul>
+        </div>
+
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+        <div class="row">
+            <div class="col-md-12">
+              <div class="tile">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <form id="login-form" name="mypage" method="post" action="/user/mypage_submit">{% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputName">이름</label>
+                            <input class="form-control" id="inputName" type="text">
+                        </div>
+
+                        <fieldset class="form-group">
+                            <legend>성별</legend>
+                            <div class="form-check">
+                              <label class="form-check-label-SEX_GBN" for="SEX_GBN_1">
+                                <input class="form-check-input" id="SEX_GBN_1" type="radio" name="optionsRadios-SEX_GBN" value="1" checked="">남자
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label-SEX_GBN" for="SEX_GBN_2">
+                                <input class="form-check-input" id="SEX_GBN_2" type="radio" name="optionsRadios-SEX_GBN" value="2">여자
+                              </label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <legend>나이</legend>
+                            <div class="form-check">
+                              <label class="form-check-label-AGE_GBN"for="AGE_GBN_1">
+                                <input class="form-check-input" id="AGE_GBN_1" type="radio" name="optionsRadios-AGE_GBN" value="2" checked="">20-29세
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label-AGE_GBN" for="AGE_GBN_2">
+                                <input class="form-check-input" id="AGE_GBN_2" type="radio" name="optionsRadios-AGE_GBN" value="3">30-39세
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label-AGE_GBN" for="AGE_GBN_3">
+                                <input class="form-check-input" id="AGE_GBN_3" type="radio" name="optionsRadios-AGE_GBN" value="4">40-49세
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label-AGE_GBN" for="AGE_GBN_4">
+                                <input class="form-check-input" id="AGE_GBN_4" type="radio" name="optionsRadios-AGE_GBN" value="5">50-59세
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label-AGE_GBN" for="AGE_GBN_5">
+                                <input class="form-check-input" id="AGE_GBN_5" type="radio" name="optionsRadios-AGE_GBN" value="6">60세 이상
+                              </label>
+                            </div>
+                        </fieldset>
+
+                        <!--근데 이거는 value가 2부터 시작해야됨 그래서 1번에 기타를 만듬-->
+
+                        <div class="form-group">
+                        <label for="JOB_GBN"><legend>직업구분</legend></label>
+                            <select class="form-control" id="JOB_GBN">
+                                <option>기타</option>
+                                <option>사무직</option>
+                                <option>공무원</option>
+                                <option>전문직(근로직)</option>
+                                <option>전문직(자영업)</option>
+                                <option>판매서비스</option>
+                                <option>기능직</option>
+                                <option>일반 자영업</option>
+                                <option>프리랜서</option>
+                                <option>대학원생 기타</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                        <label for="ADD_GBN"><legend>지역구분</legend></label>
+                            <select class="form-control" id="ADD_GBN">
+                                <option>강남3구_송파, 강남, 서초</option>
+                                <option>서울 기타</option>
+                                <option>광역시</option>
+                                <option>경기도</option>
+                                <option>기타</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="INCOME_GBN"><legend>가구소득구간</legend></label>
+                            <select class="form-control" id="INCOME_GBN">
+                                <option>100만원 미만</option>
+                                <option>200만원 미만</option>
+                                <option>300만원 미만</option>
+                                <option>400만원 미만</option>
+                                <option>500만원 미만</option>
+                                <option>600만원 미만</option>
+                                <option>700만원 이상</option>
+                            </select>
+                        </div>
+
+                        <fieldset class="form-group">
+                            <legend>결혼여부</legend>
+                            <div class="form-check">
+                              <label class="form-check-label" for="MARRY_Y_1">
+                                <input class="form-check-input" id="MARRY_Y_1" type="radio" name="optionsRadios-MARRY_Y" value="1" checked="">미혼
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="MARRY_Y_2">
+                                <input class="form-check-input" id="MARRY_Y_2" type="radio" name="optionsRadios-MARRY_Y" value="2">기혼
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="MARRY_Y_3">
+                                <input class="form-check-input" id="MARRY_Y_3" type="radio" name="optionsRadios-MARRY_Y" value="2">미응답
+                              </label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <legend>맞벌이</legend>
+                            <div class="form-check">
+                              <label class="form-check-label" for="DOUBLE_IN_1">
+                                <input class="form-check-input" id="DOUBLE_IN_1" type="radio" name="optionsRadios-DOUBLE_IN" value="1" checked="">외벌이
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="DOUBLE_IN_2">
+                                <input class="form-check-input" id="DOUBLE_IN_2" type="radio" name="optionsRadios-DOUBLE_IN" value="2">맞벌이
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="DOUBLE_IN_3">
+                                <input class="form-check-input" id="DOUBLE_IN_3" type="radio" name="optionsRadios-DOUBLE_IN" value="2">미응답
+                              </label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <legend>자녀수</legend>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NUMCHILD_0">
+                                <input class="form-check-input" id="NUMCHILD_0" type="radio" name="optionsRadios-NUMCHILD" value="0" checked="">미응답
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NUMCHILD_1">
+                                <input class="form-check-input" id="NUMCHILD_1" type="radio" name="optionsRadios-NUMCHILD" value="1">1명
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NUMCHILD_2">
+                                <input class="form-check-input" id="NUMCHILD_2" type="radio" name="optionsRadios-NUMCHILD" value="2">2명
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NUMCHILD_3">
+                                <input class="form-check-input" id="NUMCHILD_3" type="radio" name="optionsRadios-NUMCHILD" value="3">3명 이상
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NUMCHILD_4">
+                                <input class="form-check-input" id="NUMCHILD_4" type="radio" name="optionsRadios-NUMCHILD" value="4">미응답
+                              </label>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="TOT_ASSET">총자산</label>
+                            <input class="form-control" id="TOT_ASSET" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="ASS_FIN">금융자산</label>
+                            <input class="form-control" id="ASS_FIN" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="ASS_REAL">부동산자산</label>
+                            <input class="form-control" id="ASS_REAL" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="ASS_ETC">기타자산</label>
+                            <input class="form-control" id="ASS_ETC" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="M_TOT_SAVING">월 총저축액</label>
+                            <input class="form-control" id="M_TOT_SAVING" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="M_JEOK">월 총저축액_적금</label>
+                            <input class="form-control" id="M_JEOK" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="CHUNG_Y">청약보유여부</label>
+                            <input class="form-control" id="CHUNG_Y" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="M_FUND_STOCK">월 저축액_펀드/주식</label>
+                            <input class="form-control" id="M_FUND_STOCK" type="text">
+                        </div>
+
+                        <!--...-->
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">월 총저축액_펀드</label>
+                            <input class="form-control" id="M_FUND" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">월 총저축액_주식</label>
+                            <input class="form-control" id="M_STOCK" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">월 총저축액_저축성보험</label>
+                            <input class="form-control" id="M_SAVING_INSUR" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">월 총저축액_청약</label>
+                            <input class="form-control" id="M_CHUNG" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">부채잔액</label>
+                            <input class="form-control" id="TOT_DEBT" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">부채잔액_신용대출</label>
+                            <input class="form-control" id="D_SHINYONG" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">부채잔액_담보대출</label>
+                            <input class="form-control" id="D_DAMBO" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">부채잔액_아파트/주택담보대출</label>
+                            <input class="form-control" id="D_JUTEAKDAMBO" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">부채잔액_전세자금대출</label>
+                            <input class="form-control" id="D_JEONSEA" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">은퇴후 필요자금</label>
+                            <input class="form-control" id="RETIRE_NEED" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">노후자금용 월저축액</label>
+                            <input class="form-control" id="FOR_RETIRE" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">금융상품 잔액_정기예금</label>
+                            <input class="form-control" id="TOT_YEA" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">금융상품 잔액_적금</label>
+                            <input class="form-control" id="TOT_JEOK" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">금융상품 잔액_청약</label>
+                            <input class="form-control" id="TOT_CHUNG" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">금융상품 잔액_펀드</label>
+                            <input class="form-control" id="TOT_FUND" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">금융상품 잔액_ELS/DLS/ETF 등</label>
+                            <input class="form-control" id="TOT_ELS_ETE" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">월 총소비금액</label>
+                            <input class="form-control" id="TOT_SOBI" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">월 평균 카드사용금액</label>
+                            <input class="form-control" id="M_CRD_SPD" type="text">
+                        </div>
+
+                        <!--제출버튼  -->
+                        <div class="tile-footer">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </form>
+                  </div>
+
+                  <!--<div class="col-lg-4 offset-lg-1">-->
+                    <!--<form>-->
+                        <!---->
+
+                    <!--</form>-->
+                  <!--</div>-->
+
+                  <!--<div class="col-lg-4 offset-lg-1">-->
+                    <!--<form>-->
+
+                        <!--&lt;!&ndash;여기&ndash;&gt;-->
+
+                    <!--</form>-->
+                  <!--</div>-->
+
+                </div>
+              </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Essential javascripts for application to work-->
+    <script src="static/js/jquery-3.2.1.min.js" ></script>
+    <script src="static/js/popper.min.js" ></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="static/js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+    <script type="text/javascript" src="static/js/plugins/chart.js"></script>
+    <script type="text/javascript">
+      var data = {
+      	labels: ["January", "February", "March", "April", "May"],
+      	datasets: [
+      		{
+      			label: "My First dataset",
+      			fillColor: "rgba(220,220,220,0.2)",
+      			strokeColor: "rgba(220,220,220,1)",
+      			pointColor: "rgba(220,220,220,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(220,220,220,1)",
+      			data: [65, 59, 80, 81, 56]
+      		},
+      		{
+      			label: "My Second dataset",
+      			fillColor: "rgba(151,187,205,0.2)",
+      			strokeColor: "rgba(151,187,205,1)",
+      			pointColor: "rgba(151,187,205,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(151,187,205,1)",
+      			data: [28, 48, 40, 19, 86]
+      		}
+      	]
+      };
+      var pdata = [
+      	{
+      		value: 300,
+      		color: "#46BFBD",
+      		highlight: "#5AD3D1",
+      		label: "Complete"
+      	},
+      	{
+      		value: 50,
+      		color:"#F7464A",
+      		highlight: "#FF5A5E",
+      		label: "In-Progress"
+      	}
+      ]
+
+      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+      var lineChart = new Chart(ctxl).Line(data);
+
+      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+      var pieChart = new Chart(ctxp).Pie(pdata);
+    </script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      	ga('create', 'UA-72504830-1', 'auto');
+      	ga('send', 'pageview');
+      }
+    </script>
+  </body>
+</html>
