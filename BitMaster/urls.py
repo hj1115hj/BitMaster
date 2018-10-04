@@ -31,5 +31,7 @@ urlpatterns = [
     path('user/loginform/', user_view.loginform),
     path('user/login', user_view.login),
     path('user/logout', user_view.logout),
+    path('user/mypage', user_view.mypage),
+    path('user/mypage_submit', user_view.mypage_submit),
 
 ]
