@@ -2,13 +2,38 @@
 {% load staticfiles %}
 
         {% block content %}
-      	<div id="user">
-				<p class="jr-success">
-					회원가입을 축하합니다.
-					<br><br>
-					<a href="/user/loginform">로그인하기</a>
-				</p>
-		</div>
+		 <body>
+				<section class="material-half-bg">
+          <div class="cover"></div>
+        </section>
+          <section class="login-content">
+              <div class="logo">
+                <h1>FinalProject</h1>
+              </div>
+              <div class="login-box">
+                <form class="login-form" name="loginform" method="post" action="/">{% csrf_token %}
+                  <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Congratulation!</h3>
+                  <div class="form-group btn-container">
+                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-sign-in fa-lg fa-fw"></i>서비스 이용하기</button>
+                  </div>
+                </form>
+              </div>
+          </section>
+						   <!-- Essential javascripts for application to work-->
+				  <script src="js/jquery-3.2.1.min.js"></script>
+				  <script src="js/popper.min.js"></script>
+				  <script src="js/bootstrap.min.js"></script>
+				  <script src="js/main.js"></script>
+				  <!-- The javascript plugin to display page loading on top-->
+				  <script src="js/plugins/pace.min.js"></script>
+				  <script type="text/javascript">
+					// Login Page Flipbox control
+					$('.login-content [data-toggle="flip"]').click(function() {
+					  $('.login-box').toggleClass('flipped');
+					  return false;
+					});
+				  </script>
+			  </body>
         {% endblock %}
 
 

@@ -38,6 +38,7 @@ def login(request):
     if len(result) == 0:
         return HttpResponseRedirect('/user/loginform?result=False')
     print(result[0])
+
     # 로그인 성공할 때만 저장(인증처리)
     authuser= result[0]
 

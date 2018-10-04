@@ -2,33 +2,60 @@
 {% load staticfiles %}
 
         {% block content %}
-        <div id="user">
-				<form id="join-form" name="joinForm" method="post" action="/user/join">{% csrf_token %}
-					<label class="block-label" for="name">이름</label>
-					<input id="name" name="name" type="text" value="">
-
-					<label class="block-label" for="email">이메일</label>
-					<input id="email" name="email" type="text" value="">
-					<input type="button" value="id 중복체크">
-
-					<label class="block-label">패스워드</label>
-					<input name="password" type="password" value="">
-
+		<body>
+        <section class="material-half-bg">
+          <div class="cover"></div>
+        </section>
+          <section class="login-content">
+              <div class="logo">
+                <h1>FinalProject</h1>
+              </div>
+              <div class="login-box">
+                <form class="login-form" name="loginform" method="post" action="/user/join">{% csrf_token %}
+                  <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Let's join us!</h3>
+                  <div class="form-group">
+                    <label class="control-label" for="name">USERNAME</label>
+                    <input class="form-control" name="name" type="text" placeholder="name" value="">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="email">EMAIL</label>
+                    <input class="form-control" name ='email' type="text" placeholder="email" value="">
+                  </div>
+				  <div class="form-group">
+                    <label class="control-label">PASSWORD</label>
+                    <input class="form-control" name ='password' type="password" placeholder="password" value="">
+                  </div>
 					<fieldset>
-						<legend>성별</legend>
+						<h4 class="join-head"><legend>성별</legend></h4>
 						<label>여</label> <input type="radio" name="gender" value="female" checked="checked">
 						<label>남</label> <input type="radio" name="gender" value="male">
 					</fieldset>
-
-					<fieldset>
-						<legend>약관동의</legend>
+                  <div class="form-group btn-container">
+					  <fieldset>
+						  <h4 class="join-head"><legend>약관동의</legend></h4>
+						  <label>서비스 약관에 동의합니다.</label>
 						<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
-						<label>서비스 약관에 동의합니다.</label>
-					</fieldset>
+                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-sign-in fa-lg fa-fw"></i>가입하기</button>
 
-					<input type="submit" value="가입하기">
-
-				</form>
-			</div>
-         {% endblock %}
+					  </fieldset>
+				  </div>
+                </form>
+              </div>
+          </section>
+		<!-- Essential javascripts for application to work-->
+          <script src="js/jquery-3.2.1.min.js"></script>
+          <script src="js/popper.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/main.js"></script>
+          <!-- The javascript plugin to display page loading on top-->
+          <script src="js/plugins/pace.min.js"></script>
+          <script type="text/javascript">
+            // Login Page Flipbox control
+            $('.login-content [data-toggle="flip"]').click(function() {
+              $('.login-box').toggleClass('flipped');
+              return false;
+            });
+          </script>
+      </body>
+      {% endblock %}
 
