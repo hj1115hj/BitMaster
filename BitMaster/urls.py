@@ -18,6 +18,7 @@ from main import views as main_views
 from django.contrib import admin
 from django.urls import path
 import user.views as user_view
+import service.views as service_view
 
 
 urlpatterns = [
@@ -31,5 +32,12 @@ urlpatterns = [
     path('user/loginform/', user_view.loginform),
     path('user/login', user_view.login),
     path('user/logout', user_view.logout),
+
+
+    # service
+    path('service/yniScore', service_view.yniScore),
+    path('service/yniCompare', service_view.yniCompare),
+    path('service/yniAverage', service_view.yniAverage)
+
 
 ]
