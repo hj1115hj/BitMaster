@@ -1,4 +1,4 @@
-#!D:\pycharmproject\test_Bootstrap\venv\Scripts\python.exe
+#!D:\PycharmProjects\mysite\venv\Scripts\python.exe
 from django.core import management
 
 if __name__ == "__main__":

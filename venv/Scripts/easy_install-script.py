@@ -1,4 +1,4 @@
-#!D:\pycharmproject\test_Bootstrap\venv\Scripts\python.exe
+#!D:\PycharmProjects\mysite\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'setuptools==39.1.0','console_scripts','easy_install'
 __requires__ = 'setuptools==39.1.0'
 import re
