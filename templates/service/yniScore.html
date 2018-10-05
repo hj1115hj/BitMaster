@@ -1,0 +1,341 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <title>Vali Admin - Free Bootstrap 4 Admin Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}' >
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- assets css------------------------------------------------------------>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href='{%static "assets/materialize/css/materialize.min.css" %}' media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href='{%static "assets/css/bootstrap.css" %}' rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href='{% static "assets/css/font-awesome.css" %}' rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href='{% static  "assets/js/morris/morris-0.4.3.min.css" %}'  rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href='{% static  "assets/css/custom-styles.css" %}'   rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href='{%static "assets/js/Lightweight-Chart/cssCharts.css" %}' >
+
+        <!-- assets css------------------------------------------------------------>
+  </head>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="/">FinalProject</a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+
+        <!--Notification Menu-->
+
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+            <li><a class="dropdown-item" href="/user/joinform"><i class="fa fa-cog fa-lg"></i> Join</a></li>
+            <li><a class="dropdown-item" href="/user/loginform"><i class="fa fa-user fa-lg"></i> Login</a></li>
+            <li><a class="dropdown-item" href="/user/logout"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name">John Doe</p>
+          <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
+        </div>
+      </div>
+     <ul class="app-menu">
+        <li><a class="app-menu__item" href="/service/yniAverage"><span class="app-menu__label">나와 같은 사람들의 평균생활</span></a></li>
+
+   <li><a class="app-menu__item" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
+
+        <li><a class="app-menu__item active" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
+      </ul>
+    </aside>
+    <main class="app-content">
+        <!---------------------------------------------------------------->
+          <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i> 나의 금융생활 점수는?</h1>
+          <p>나의 금융자산, 월 저축 금액, 월 소비금액을 비교해 보세요!</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="#">나의 금융생활 점수는?</a></li>
+        </ul>
+      </div>
+
+        <!--------------------------------------------------------------------->
+        <div id="page-inner"><!--row---------->
+
+          <!--row---------->
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                   <div class="card teal">
+						<div class="card-content white-text">
+
+						  <span class="card-title">금융자산</span>
+						  <p>나와 같은 사람들의 평균 금융 자산</p>
+                            <h3>2,383 만원</h3>
+
+
+                       <h4>3,000 만원</h4>
+
+						</div>
+						<div class="card-action">
+
+                            <a href="#">내정보 수정하기</a>
+
+                        </div>
+
+				      </div>
+						</div>
+
+
+                <div class="col-md-4 col-sm-4">
+                   <div class="card">
+						<div class="card-content">
+						  <span class="card-title">월 저축 금액</span>
+						  <p>나와 같은 사람들의 월 저축 금액</p>
+                            <h3>118 만원</h3>
+
+                       <h4>200 만원</h4>
+						</div>
+						<div class="card-action">
+				        <a href="#">내정보 수정하기</a>
+
+						</div>
+					  </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                        <div class="card blue-grey darken-1">
+						<div class="card-content white-text">
+						  <span class="card-title">월 소비 금액</span>
+						  <p>나와 같은 사람들의 평균 월 소비 금액</p>
+                            <h3>110 만원</h3>
+
+                           <h4>200 만원</h4>
+						</div>
+						<div class="card-action">
+					        <a href="#">내정보 수정하기</a>
+
+						</div>
+					  </div>
+                </div>
+            </div>
+                   <!-- /. ROW  -->
+        <div class="dashboard-cards">
+            	<div class="cirStats">
+                <div class="row">
+                      <div class="col-md-4 col-sm-4">
+
+								<div class="card-panel text-center">
+											<h4>51점</h4>
+											<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
+											</div>
+                                </div>
+
+                    </div>
+                 <div class="col-md-4 col-sm-4">
+								<div class="card-panel text-center">
+											<h4>63점</h4>
+											<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
+											</div>
+										</div>
+
+                    </div>
+                   <div class="col-md-4 col-sm-4">
+
+				           <div class="card-panel text-center">
+											<h4>62점</h4>
+											<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
+											</div>
+										</div>
+
+                    </div>
+
+                </div>
+
+
+			   </div>
+        </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-action">
+                            Basic Tabs
+                        </div>
+                        <div class="card-content">
+							 <ul class="collapsible" data-collapsible="accordion">
+								<li>
+								  <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+								  <div class="collapsible-body"><p>Tt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..</p></div>
+								</li>
+								<li>
+								  <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+								  <div class="collapsible-body"><p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+								</li>
+								<li>
+								  <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+								  <div class="collapsible-body"><p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+								</li>
+							  </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-action">
+                            Tabs
+                        </div>
+                        <div class="card-content">
+                           <div class="col">
+							  <ul class="tabs">
+								<li class="tab col s3"><a href="#test1">Test 1</a></li>
+								<li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+								<li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+								<li class="tab col s3"><a href="#test4">Test 4</a></li>
+							  </ul>
+							</div>
+							<div class="clearBoth"><br/></div>
+							<div id="test1" class="col s12"><p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+							<div id="test2" class="col s12"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+							<div id="test3" class="col s12"><p>Bpsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+							<div id="test4" class="col s12"><p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+                           <div class="clearBoth"><br/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!-- /. ROW  -->
+				<footer><p>Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
+</p></footer>
+					</div>
+
+        <!---------------------------------------------------------------->
+
+
+
+    </main>
+    <!-- Essential javascripts for application to work-->
+    <script src='{%static "js/jquery-3.2.1.min.js" %}' ></script>
+    <script src='{%static "js/popper.min.js" %}'  ></script>
+    <script src='{%static " js/bootstrap.min.js"  %}' ></script>
+    <script src='{%static "js/main.js  "%}' ></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src= '{%static "js/plugins/pace.min.js"%}'></script>
+
+    <!-- Page specific javascripts-->
+    <script type="text/javascript" src='{%static "js/plugins/chart.js"%}' ></script>
+    <script type="text/javascript">
+      var data = {
+         labels: ["January", "February", "March", "April", "May"],
+         datasets: [
+            {
+               label: "My First dataset",
+               fillColor: "rgba(220,220,220,0.2)",
+               strokeColor: "rgba(220,220,220,1)",
+               pointColor: "rgba(220,220,220,1)",
+               pointStrokeColor: "#fff",
+               pointHighlightFill: "#fff",
+               pointHighlightStroke: "rgba(220,220,220,1)",
+               data: [65, 59, 80, 81, 56]
+            },
+            {
+               label: "My Second dataset",
+               fillColor: "rgba(151,187,205,0.2)",
+               strokeColor: "rgba(151,187,205,1)",
+               pointColor: "rgba(151,187,205,1)",
+               pointStrokeColor: "#fff",
+               pointHighlightFill: "#fff",
+               pointHighlightStroke: "rgba(151,187,205,1)",
+               data: [28, 48, 40, 19, 86]
+            }
+         ]
+      };
+      var pdata = [
+         {
+            value: 300,
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Complete"
+         },
+         {
+            value: 50,
+            color:"#F7464A",
+            highlight: "#FF5A5E",
+            label: "In-Progress"
+         }
+      ]
+
+      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+      var lineChart = new Chart(ctxl).Line(data);
+
+      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+      var pieChart = new Chart(ctxp).Pie(pdata);
+    </script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-72504830-1', 'auto');
+         ga('send', 'pageview');
+      }
+    </script>
+
+  <!-- assets css------------------------------------------------------------------------>
+   <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src='{%static "assets/js/jquery-1.10.2.js" %}'></script>
+
+	<!-- Bootstrap Js -->
+    <script src='{%static  "assets/js/bootstrap.min.js"  %}'></script>
+
+	<script src='{%static  "assets/materialize/js/materialize.min.js" %}'></script>
+
+    <!-- Metis Menu Js -->
+    <script src='{%static  "assets/js/jquery.metisMenu.js"  %}'></script>
+    <!-- Morris Chart Js -->
+    <script src= '{%static   "assets/js/morris/raphael-2.1.0.min.js" %}' > </script>
+    <script src='{%static  "assets/js/morris/morris.js" %}'></script>
+
+
+	<script src='{%static "assets/js/easypiechart.js" %}'></script>
+	<script src='{%static  "assets/js/easypiechart-data.js " %}'></script>
+
+	 <script src='{%static   "assets/js/Lightweight-Chart/jquery.chart.js"  %}' ></script>
+
+    <!-- Custom Js -->
+    <script src='{%static  "assets/js/custom-scripts.js"% }'>  </script>
+
+    <!-- assets css------------------------------------------------------------------------>
+  </body>
+</html>
