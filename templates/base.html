@@ -21,12 +21,29 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}' >
     <!-- Font-icon css-->
+
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--  assets css---------------------------------------------------------->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href='{%static "assets/materialize/css/materialize.min.css" %}' media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href='{%static "assets/css/bootstrap.css" %}' rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href='{% static "assets/css/font-awesome.css" %}' rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href='{% static  "assets/js/morris/morris-0.4.3.min.css" %}'  rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href='{% static  "assets/css/custom-styles.css" %}'   rel="stylesheet" />
+      <link rel="stylesheet" href='{%static "assets/js/Lightweight-Chart/cssCharts.css" %}' >
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+
   </head>
-  <body class="app sidebar-mini rtl">
-    <!-- Navbar-->
+   <body class="app sidebar-mini rtl">
+       <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="/">FinalProject</a>
-      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="/" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
 
@@ -39,40 +56,29 @@
             <li><a class="dropdown-item" href="/user/joinform"><i class="fa fa-cog fa-lg"></i> Join</a></li>
             <li><a class="dropdown-item" href="/user/loginform"><i class="fa fa-user fa-lg"></i> Login</a></li>
             {% else %}
-             <li><a class="dropdown-item" href="/user/joinform"><i class="fa fa-cog fa-lg"></i> Join</a></li>
-            <li><a class="dropdown-item" href="/user/loginform"><i class="fa fa-user fa-lg"></i> Login</a></li>
             <li><a class="dropdown-item" href="/user/logout"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
             {% endif %}
           </ul>
         </li>
       </ul>
     </header>
-    <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 
-    <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
-        <div>
-          <p class="app-sidebar__user-name">John Doe</p>
-          <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
-        </div>
-      </div>
-     <ul class="app-menu">
-        <li><a class="app-menu__item active" href="/service/yniAverage"><span class="app-menu__label">나와 같은 사람들의 평균생활</span></a></li>
 
-   <li><a class="app-menu__item" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
-        <li><a class="app-menu__item" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
-      </ul>
-    </aside>
+       <!-- Sidebar menu-->
 
-    <main class="app-content">
+        {% block sidebar %}
+        {% endblock %}
+
         {% block content %}
         {% endblock %}
       <!--여기에 문서를 입력하시오-->
 
-      <li><a class="app-menu__item active" href="user/mypage">user/mypage 실험해보자</a></li>
 
-    </main>
+
+
+
+
+
     <!-- Essential javascripts for application to work-->
     <script src='{%static "js/jquery-3.2.1.min.js" %}' ></script>
     <script src='{%static "js/popper.min.js" %}'  ></script>
@@ -83,6 +89,10 @@
 
     <!-- Page specific javascripts-->
     <script type="text/javascript" src='{%static "js/plugins/chart.js"%}' ></script>
+
+
+    {% block  script%}
+    {% endblock script%}
     <script type="text/javascript">
       var data = {
          labels: ["January", "February", "March", "April", "May"],
@@ -141,5 +151,32 @@
          ga('send', 'pageview');
       }
     </script>
+
+  <!-- assets css------------------------------------------------------------------------>
+    <!--JS Scripts-->
+     <!--jQuery Js -->
+    <script src='{%static "assets/js/jquery-1.10.2.js" %}'></script>
+
+	<!-- Bootstrap Js -->
+    <script src='{%static  "assets/js/bootstrap.min.js"  %}'></script>
+
+	<script src='{%static  "assets/materialize/js/materialize.min.js" %}'></script>
+
+    <!-- Metis Menu Js -->
+    <script src='{%static  "assets/js/jquery.metisMenu.js"  %}'></script>
+    <!-- Morris Chart Js -->
+    <script src= '{%static   "assets/js/morris/raphael-2.1.0.min.js" %}' > </script>
+    <script src='{%static  "assets/js/morris/morris.js" %}'></script>
+
+
+	<script src='{%static "assets/js/easypiechart.js" %}'></script>
+	<script src='{%static  "assets/js/easypiechart-data.js " %}'></script>
+
+	 <script src='{%static   "assets/js/Lightweight-Chart/jquery.chart.js"  %}' ></script>
+
+    <!-- Custom Js -->
+    <script src='{%static  "assets/js/custom-scripts.js"% }'>  </script>
+
+    <!-- assets css------------------------------------------------------------------------>
   </body>
 </html>

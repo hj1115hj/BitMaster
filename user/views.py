@@ -64,42 +64,43 @@ def mypage(request):
 def mypage_submit(request):
     user = User()
 
-    user.name = request.POST['name']
+    print("자 이제 시작이다 내 꿈을, 내 꿈을 위한 여행 피카츄")
+    user.name = request.POST.get('name', '')
 
-    user.SEX_GBN = request.POST.get['SEX_GBN']
-    user.AGE_GBN = request.POST.get['AGE_GBN']
-    user.JOB_GBN = request.POST.get['JOB_GBN']
-    user.ADD_GBN = request.POST.get['ADD_GBN']
-    user.INCOME_GBN = request.POST.get['INCOME_GBN']
-    user.MARRY_Y = mrequest.POST.get['MARRY_Y']
-    user.DOUBLE_IN = request.POST.get['DOUBLE_IN']
-    user.NUMCHILD = request.POST.get['NUMCHILD']
-    user.TOT_ASSET = request.POST.get['TOT_ASSET']
-    user.ASS_FIN = request.POST.get['ASS_FIN']
-    user.ASS_REAL = request.POST.get['ASS_REAL']
-    user.ASS_ETC = request.POST.get['ASS_ETC']
-    user.M_TOT_SAVING = request.POST.get['M_TOT_SAVING']
-    user.M_JEOK = request.POST.get['M_JEOK']
-    user.CHUNG_Y = request.POST.get['CHUNG_Y']
-    user.M_FUND_STOCK = request.POST.get['M_FUND_STOCK']
-    user.M_FUND = request.POST.get['M_FUND']
-    user.M_STOCK = request.POST.get['M_STOCK']
-    user.M_SAVING_INSUR = request.POST.get['M_SAVING_INSUR']
-    user.M_CHUNG = request.POST.get['M_CHUNG']
-    user.TOT_DEBT = request.POST.get['TOT_DEBT']
-    user.D_SHINYONG = request.POST.get['D_SHINYONG']
-    user.D_DAMBO = request.POST.get['D_DAMBO']
-    user.D_JUTEAKDAMBO = request.POST.get['D_JUTEAKDAMBO']
-    user.D_JEONSEA = request.POST.get['D_JEONSEA']
-    user.RETIRE_NEED = request.POST.get['RETIRE_NEED']
-    user.FOR_RETIRE = request.POST.get['FOR_RETIRE']
-    user.TOT_YEA = request.POST.get['TOT_YEA']
-    user.TOT_JEOK = request.POST.get['TOT_JEOK']
-    user.TOT_CHUNG = request.POST.get['TOT_CHUNG']
-    user.TOT_FUND = request.POST.get['TOT_FUND']
-    user.TOT_ELS_ETE = request.POST.get['TOT_ELS_ETE']
-    user.TOT_SOBI = request.POST.get['TOT_SOBI']
-    user.M_CRD_SPD = request.POST.get['M_CRD_SPD']
+    user.SEX_GBN = request.POST.get('SEX_GBN', '1')
+    user.AGE_GBN = request.POST.get('AGE_GBN', '2')
+    user.JOB_GBN = request.POST.get('JOB_GBN', '11')
+    user.ADD_GBN = request.POST.get('ADD_GBN', '5')
+    user.INCOME_GBN = request.POST.get('INCOME_GBN', '1')
+    user.MARRY_Y = request.POST.get('MARRY_Y', '3')
+    user.DOUBLE_IN = request.POST.get('DOUBLE_IN', '3')
+    user.NUMCHILD = request.POST.get('NUMCHILD', '0')
+    user.TOT_ASSET = request.POST.get('TOT_ASSET', '0')
+    user.ASS_FIN = request.POST.get('ASS_FIN', '0')
+    user.ASS_REAL = request.POST.get('ASS_REAL', '0')
+    user.ASS_ETC = request.POST.get('ASS_ETC', '0')
+    user.M_TOT_SAVING = request.POST.get('M_TOT_SAVING', '0')
+    user.M_JEOK = request.POST.get('M_JEOK', '0')
+    user.CHUNG_Y = request.POST.get('CHUNG_Y', '0')
+    user.M_FUND_STOCK = request.POST.get('M_FUND_STOCK', '0')
+    user.M_FUND = request.POST.get('M_FUND', '0')
+    user.M_STOCK = request.POST.get('M_STOCK', '0')
+    user.M_SAVING_INSUR = request.POST.get('M_SAVING_INSUR', '0')
+    user.M_CHUNG = request.POST.get('M_CHUNG', '0')
+    user.TOT_DEBT = request.POST.get('TOT_DEBT', '0')
+    user.D_SHINYONG = request.POST.get('D_SHINYONG', '0')
+    user.D_DAMBO = request.POST.get('D_DAMBO', '0')
+    user.D_JUTEAKDAMBO = request.POST.get('D_JUTEAKDAMBO', '0')
+    user.D_JEONSEA = request.POST.get('D_JEONSEA', '0')
+    user.RETIRE_NEED = request.POST.get('RETIRE_NEED', '0')
+    user.FOR_RETIRE = request.POST.get('FOR_RETIRE', '0')
+    user.TOT_YEA = request.POST.get('TOT_YEA', '0')
+    user.TOT_JEOK = request.POST.get('TOT_JEOK', '0')
+    user.TOT_CHUNG = request.POST.get('TOT_CHUNG', '0')
+    user.TOT_FUND = request.POST.get('TOT_FUND', '0')
+    user.TOT_ELS_ETE = request.POST.get('TOT_ELS_ETE', '0')
+    user.TOT_SOBI = request.POST.get('TOT_SOBI', '0')
+    user.M_CRD_SPD = request.POST.get('M_CRD_SPD', '0')
 
     user.save()
-    return HttpResponseRedirect('user/mypage.html')
+    return HttpResponseRedirect('/user/mypage')
