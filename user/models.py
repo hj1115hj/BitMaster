@@ -3,10 +3,11 @@ from django.db import models
 
 
 class User(models.Model):
+
     name = models.CharField(max_length=10)
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=32)
-
+    idx = models.AutoField(primary_key=True)
     SEX_GBN = models.IntegerField(default=0)  # 성별
     AGE_GBN = models.IntegerField(default=0)  # 연령-10세단위
     JOB_GBN = models.IntegerField(default=0)  # 직업
@@ -41,7 +42,14 @@ class User(models.Model):
     TOT_ELS_ETE = models.IntegerField(default=0)  # 금융삼품잔액_ELS/DLS/ETF
     TOT_SOBI = models.IntegerField(default=0)  # 월총소비금액
     M_CRD_SPD = models.IntegerField(default=0)  # 월평균카드사용금액
+    Check_field = models.IntegerField(default=0) #값이 모두 입력되어있는지 아닌지 판단
 
     def __str__(self):
-        return 'user(%s, %s)' % \
-               (self.name, self.email)
+        return 'user(%s, %s %s)' % \
+               (self.name, self.email,self.idx)
+
+
+
+
+
+

@@ -41,6 +41,7 @@ def login(request):
         return HttpResponseRedirect('/user/loginform?result=False')
     print(result[0])
 
+
     # 로그인 성공할 때만 저장(인증처리)
     authuser = result[0]
 
@@ -62,18 +63,25 @@ def mypage(request):
 
 
 def mypage_submit(request):
-    user = User()
 
-    print("자 이제 시작이다 내 꿈을, 내 꿈을 위한 여행 피카츄")
+    #로그인 유저의 idx에 해당하는 객체얻어옴
+    idx = request.session['authuser']['idx']
+    result =User.objects.filter(idx= idx)
+
+    user = result[0]
+
+    print(user)
     user.name = request.POST.get('name', '')
 
-    user.SEX_GBN = request.POST.get('SEX_GBN', '1')
-    user.AGE_GBN = request.POST.get('AGE_GBN', '2')
-    user.JOB_GBN = request.POST.get('JOB_GBN', '11')
-    user.ADD_GBN = request.POST.get('ADD_GBN', '5')
-    user.INCOME_GBN = request.POST.get('INCOME_GBN', '1')
-    user.MARRY_Y = request.POST.get('MARRY_Y', '3')
-    user.DOUBLE_IN = request.POST.get('DOUBLE_IN', '3')
+    print(user.name)
+
+    user.SEX_GBN = request.POST.get('optionsRadios-SEX_GBN', '0')
+    user.AGE_GBN = request.POST.get('optionsRadios-AGE_GBN', '0')
+    user.JOB_GBN = request.POST.get('JOB_GBN', '0')
+    user.ADD_GBN = request.POST.get('ADD_GBN', '0')
+    user.INCOME_GBN = request.POST.get('INCOME_GBN', '0')
+    user.MARRY_Y = request.POST.get('MARRY_Y', '0')
+    user.DOUBLE_IN = request.POST.get('DOUBLE_IN', '0')
     user.NUMCHILD = request.POST.get('NUMCHILD', '0')
     user.TOT_ASSET = request.POST.get('TOT_ASSET', '0')
     user.ASS_FIN = request.POST.get('ASS_FIN', '0')
@@ -101,6 +109,9 @@ def mypage_submit(request):
     user.TOT_ELS_ETE = request.POST.get('TOT_ELS_ETE', '0')
     user.TOT_SOBI = request.POST.get('TOT_SOBI', '0')
     user.M_CRD_SPD = request.POST.get('M_CRD_SPD', '0')
-
+    print(user.SEX_GBN)
+    print(user.AGE_GBN)
+    print(user.JOB_GBN)
+    print(user.ADD_GBN)
     user.save()
     return HttpResponseRedirect('/user/mypage')
