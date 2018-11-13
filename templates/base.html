@@ -42,7 +42,7 @@
   </head>
    <body class="app sidebar-mini rtl">
        <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="/">FinalProject</a>
+    <header class="app-header"><a class="app-header__logo" href="/index">FinalProject</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
@@ -56,6 +56,7 @@
             <li><a class="dropdown-item" href="/user/joinform"><i class="fa fa-cog fa-lg"></i> Join</a></li>
             <li><a class="dropdown-item" href="/user/loginform"><i class="fa fa-user fa-lg"></i> Login</a></li>
             {% else %}
+              <li><a class="dropdown-item" href="/user/mypage"><i class="fa fa-cog fa-lg"></i> MyPage</a></li>
             <li><a class="dropdown-item" href="/user/logout"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
             {% endif %}
           </ul>
@@ -82,20 +83,17 @@
     <!-- Essential javascripts for application to work-->
     <script src='{%static "js/jquery-3.2.1.min.js" %}' ></script>
     <script src='{%static "js/popper.min.js" %}'  ></script>
-    <script src='{%static " js/bootstrap.min.js"  %}' ></script>
+    <script src='{%static "js/bootstrap.min.js"  %}' ></script>
     <script src='{%static "js/main.js  "%}' ></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src= '{%static "js/plugins/pace.min.js"%}'></script>
 
     <!-- Page specific javascripts-->
     <script type="text/javascript" src='{%static "js/plugins/chart.js"%}' ></script>
-
-
     {% block  script%}
-    {% endblock script%}
+    {% endblock %}
     <script type="text/javascript">
       var data = {
-         labels: ["January", "February", "March", "April", "May"],
          datasets: [
             {
                label: "My First dataset",
@@ -133,10 +131,8 @@
             label: "In-Progress"
          }
       ]
-
       var ctxl = $("#lineChartDemo").get(0).getContext("2d");
       var lineChart = new Chart(ctxl).Line(data);
-
       var ctxp = $("#pieChartDemo").get(0).getContext("2d");
       var pieChart = new Chart(ctxp).Pie(pdata);
     </script>
@@ -169,13 +165,13 @@
     <script src='{%static  "assets/js/morris/morris.js" %}'></script>
 
 
-	<script src='{%static "assets/js/easypiechart.js" %}'></script>
+	<script src='{%static "assets/js/easypiechart.js" %}' ></script>
 	<script src='{%static  "assets/js/easypiechart-data.js " %}'></script>
 
-	 <script src='{%static   "assets/js/Lightweight-Chart/jquery.chart.js"  %}' ></script>
+	 <script src='{%static  "assets/js/Lightweight-Chart/jquery.chart.js"  %}' ></script>
 
     <!-- Custom Js -->
-    <script src='{%static  "assets/js/custom-scripts.js"% }'>  </script>
+    <script src='{%static "assets/js/custom-scripts.js" %}'>  </script>
 
     <!-- assets css------------------------------------------------------------------------>
   </body>

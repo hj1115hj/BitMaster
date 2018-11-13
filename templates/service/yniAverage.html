@@ -11,10 +11,9 @@
       </div>
      <ul class="app-menu">
         <li><a class="app-menu__item active" href="/service/yniAverage"><span class="app-menu__label">나와 같은 사람들의 평균생활</span></a></li>
-
    <li><a class="app-menu__item" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
-
         <li><a class="app-menu__item" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
+         <li><a class="app-menu__item" href="/service/productList"><span class="app-menu__label">베스트 상품 정보</span></a></li>
       </ul>
     </aside>
 
@@ -25,7 +24,7 @@
         <!---------------------------------------------------------------->
           <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i> 나의 금융생활 점수는?</h1>
+          <h1><i class="fa fa-dashboard"></i> 나와 같은 사람들의 평균생활은?</h1>
           <p>나의 금융자산, 월 저축 금액, 월 소비금액을 비교해 보세요!</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
@@ -48,7 +47,7 @@
                   <th>#</th>
                   <th>성별</th>
                     <th></th>
-                  <td>남자</td>
+                  <td>{{user_info.sex}}</td>
                 </tr>
               </thead>
               <tbody>
@@ -56,25 +55,25 @@
                     <th>#</th>
                   <th>나이</th>
                    <th></th>
-                  <td>30대</td>
+                  <td>{{user_info.age}}</td>
                 </tr>
                 <tr>
                        <th>#</th>
                   <th>지역</th>
                    <th></th>
-                  <td>강남/서초/송파</td>
+                  <td>{{user_info.add}}</td>
                 </tr>
                 <tr>
                        <th>#</th>
                   <th>직업</th>
                    <th></th>
-                  <td>사무직</td>
+                  <td>{{user_info.job}}</td>
                 </tr>
                 <tr>
                         <th>#</th>
-                  <th>월급</th>
+                  <th>월소득</th>
                    <th></th>
-                  <td>500만원 미만</td>
+                  <td>{{user_info.income}}</td>
                 </tr>
               </tbody>
             </table>
@@ -85,38 +84,47 @@
           <div class="tile">
             <h3 class="tile-title">상세 정보</h3>
             <table class="table">
-              <thead>
-                <tr>
-                         <th>#</th>
-                  <th>주거</th>
-                   <th></th>
-                  <td>아파트</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                      <th>#</th>
-                  <th>자가</th>
-                   <th></th>
-                  <td>전세</td>
-                </tr>
-                <tr>
+
+
+           <thead>
+            <tr>
                    <th>#</th>
                   <th>결혼 유무</th>
                    <th></th>
-                  <td>기혼</td>
+                  <td>{{user_info.marry}}</td>
                 </tr>
-                <tr>
+
+           </thead>
+            <tbody>
                         <th>#</th>
                   <th>맞벌이 유무</th>
                    <th></th>
-                  <td>맞벌이</td>
+                  <td>{{user_info.double}}</td>
                 </tr>
                     <tr>
                         <th>#</th>
                   <th>자녀수</th>
                    <th></th>
-                  <td>2명</td>
+                  <td>{{user_info.numchild}}</td>
+                </tr>
+                       <tr>
+                      <th>#</th>
+                  <th>금융 자산</th>
+                   <th></th>
+                  <td>{{user_info.ass_fin}}만원</td>
+                </tr>
+                       <tr>
+                      <th>#</th>
+                  <th>월 총저축액</th>
+                   <th></th>
+                  <td>{{user_info.m_tot_saving}}만원</td>
+
+                </tr>
+                       <tr>
+                      <th>#</th>
+                  <th>월 총소비금액</th>
+                   <th></th>
+                  <td>{{user_info.tot_sobi}}만원</td>
                 </tr>
               </tbody>
             </table>
@@ -127,7 +135,7 @@
 
                    <!-- /. ROW  -->
    <div class="alert alert-success">
-									<strong>Step1 : </strong> 기본정보(성별, 나이, 지역, 직업, 월소득)가 나와 같은 사람들의 평균
+									<strong>Step1 : </strong> 기본정보(성별, 나이, 월소득)가 나와 같은 사람들의 평균
                     </div>
 
 
@@ -139,25 +147,36 @@
        		<div class="col-md-4 col-sm-4">
 
 								<div class="card-panel text-center">
-											<h4>아파트 주거</h4>
-											<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
+											<h4>나와 같은 직업 비중</h4>
+											<div class="easypiechart" id="easypiechart-blue" data-percent="{{job_gbn_result}}" ><span class="percent">{{job_gbn_result}}%</span>
 											</div>
                                 </div>
 
-                    </div>
-              		<div class="col-md-4 col-sm-4">
-								<div class="card-panel text-center">
-											<h4>자가</h4>
-											<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
+          </div>
+
+
+
+
+
+                    <div class="col-md-4 col-sm-4">
+
+						<div class="card-panel text-center">
+											<h4>나와 같은 지역 비중</h4>
+											<div class="easypiechart" id="easypiechart-red" data-percent="{{add_gbn_result}}" ><span class="percent">{{add_gbn_result}}%</span>
 											</div>
-										</div>
+
+                                </div>
 
                     </div>
+
+
+
+
          	    		<div class="col-md-4 col-sm-4">
 
 				           <div class="card-panel text-center">
 											<h4>맞벌이</h4>
-											<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
+											<div class="easypiechart" id="easypiechart-teal" data-percent="{{double_result}}" ><span class="percent">{{double_result}}%</span>
 											</div>
 										</div>
 
@@ -173,15 +192,15 @@
     		<div class="col-md-4 col-sm-4">
 
 										<div class="card-panel text-center">
-											<h4>서울 거주율</h4>
-											<div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
+											<h4>결혼 여부</h4>
+											<div class="easypiechart" id="easypiechart-orange" data-percent="{{marry_y_result}}" ><span class="percent">{{marry_y_result}}%</span>
 											</div>
 										</div>
                 </div>
               <div class="col-md-4 col-sm-4">
 								<div class="card-panel text-center">
 											<h4>평균 자녀수</h4>
-											<div class="easypiechart" id="easypiechart-red"><span class="percent">1명</span>
+											<div class="easypiechart" id="easypiechart-red"><span class="percent">{{numchild_result}}명</span>
 											</div>
 										</div>
 
@@ -190,7 +209,7 @@
 
 								<div class="card-panel text-center">
 											<h4>월소득 평균</h4>
-											<div class="easypiechart" id="easypiechart-blue"  ><span class="percent">325 만원</span>
+											<div class="easypiechart" id="easypiechart-blue"  ><span class="percent">{{total_result}}만원</span>
 											</div>
                                 </div>
 
@@ -202,7 +221,7 @@
 
 
 		<div class="alert alert-info">
-									<strong>Step2: </strong> 기본정보와 상세정보를 포함한 나와 같은 사람들의 평균
+									<strong>Step2: </strong> 상세정보(금융자산, 월 총저축액, 월 총소비금액)이 나와 같은 사람들의 평균
                     </div>
 
 
@@ -214,7 +233,7 @@
 						  <span class="card-title">금융자산</span>
 						  <p>나와 같은 사람들의 평균 금융 자산</p>
                             <br>
-                            <h3>2,383 만원</h3>
+                            <h3>{{detail_avg.ASS_FIN__avg}}만원</h3>
 
 <br><br>
 <div class="progress progress-striped">
@@ -236,7 +255,7 @@
 						  <span class="card-title">월 저축 금액</span>
 						  <p>나와 같은 사람들의 월 저축 금액</p>
                                <br>
-                            <h3>118 만원</h3>
+                            <h3>{{detail_avg.M_TOT_SAVING__avg}} 만원</h3>
 
 <br><br>
 
@@ -256,7 +275,7 @@
 						  <span class="card-title">월 소비 금액</span>
 						  <p>나와 같은 사람들의 평균 월 소비 금액</p>
                                <br>
-                            <h3>110 만원</h3>
+                            <h3>{{detail_avg.TOT_SOBI__avg }}만원</h3>
 
 <br><br>
                        <div class="progress progress-striped">
@@ -273,56 +292,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="card">
-                        <div class="card-action">
-                            Basic Tabs
-                        </div>
-                        <div class="card-content">
-							 <ul class="collapsible" data-collapsible="accordion">
-								<li>
-								  <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-								  <div class="collapsible-body"><p>Tt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..</p></div>
-								</li>
-								<li>
-								  <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-								  <div class="collapsible-body"><p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-								</li>
-								<li>
-								  <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-								  <div class="collapsible-body"><p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-								</li>
-							  </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="card">
-                        <div class="card-action">
-                            Tabs
-                        </div>
-                        <div class="card-content">
-                           <div class="col">
-							  <ul class="tabs">
-								<li class="tab col s3"><a href="#test1">Test 1</a></li>
-								<li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-								<li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-								<li class="tab col s3"><a href="#test4">Test 4</a></li>
-							  </ul>
-							</div>
-							<div class="clearBoth"><br/></div>
-							<div id="test1" class="col s12"><p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-							<div id="test2" class="col s12"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-							<div id="test3" class="col s12"><p>Bpsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-							<div id="test4" class="col s12"><p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-                           <div class="clearBoth"><br/></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 
 
         </div>
@@ -335,3 +304,4 @@
     </main>
 
 {% endblock %}
+

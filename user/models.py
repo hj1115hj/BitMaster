@@ -16,6 +16,7 @@ class User(models.Model):
     MARRY_Y = models.IntegerField(default=0)  # 결혼여부
     DOUBLE_IN = models.IntegerField(default=0)  # 맞벌이
     NUMCHILD = models.IntegerField(default=0)  # 자녀수
+
     TOT_ASSET = models.IntegerField(default=0)  # 총자산
     ASS_FIN = models.IntegerField(default=0)  # 금융자산
     ASS_REAL = models.IntegerField(default=0)  # 부동산자산
@@ -43,10 +44,11 @@ class User(models.Model):
     TOT_SOBI = models.IntegerField(default=0)  # 월총소비금액
     M_CRD_SPD = models.IntegerField(default=0)  # 월평균카드사용금액
     Check_field = models.IntegerField(default=0) #값이 모두 입력되어있는지 아닌지 판단
+    Product = models.IntegerField(default=0)
 
     def __str__(self):
-        return 'user(%s, %s %s)' % \
-               (self.name, self.email,self.idx)
+        return 'user(idx:  %s,name: %s email: %s)' % \
+               (self.idx ,self.name, self.email)
 
 
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>success</title>
+</head>
+<body>
+<table border="1">
+    {% for data in result %}
+
+   <tr>
+      <td>{{data.co_nm}}</td>
+      <td>{{data.product_nm}}</td>
+       <td>{{data.iza1}}</td>
+      <td>{{data.iza2}}</td>
+       <td>{{data.iza3}}</td>
+      <td>{{data.max_rate}}</td>
+       <td>{{data.join_mem}}</td>
+      <td>{{data.iza_cal}}</td>
+
+   </tr>
+{% endfor %}
+</table>
+</body>
+</html>

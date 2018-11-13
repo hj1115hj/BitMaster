@@ -24,7 +24,7 @@ import service.views as service_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_views.index),
-
+    path('index', main_views.index),
     # user
     path('user/joinform/', user_view.joinform),
     path('user/join', user_view.join),
@@ -39,7 +39,8 @@ urlpatterns = [
     # service
     path('service/yniScore', service_view.yniScore),
     path('service/yniCompare', service_view.yniCompare),
-    path('service/yniAverage', service_view.yniAverage)
+    path('service/yniAverage', service_view.yniAverage),
+    path('service/productList', service_view.productList),
 
 
 ]

@@ -48,16 +48,45 @@
 					</div>
 					<div class="card-image">
 					  <div class="collection">
-						  <a  class="collection-item">월 적립식 저축액<span class="new badge red" data-badge-caption="만원">13</span></a>
-                          <a class="collection-item"><span class="badge">없음</span>월 펀드 저축액</a>
 
-						  <a  class="collection-item"><span class="badge">미보유</span>청약 통장 보유 여부</a>
-				      <a  class="collection-item"><span class="badge">없음</span>마이너스 통장 잔액</a>
-                          <a  class="collection-item"><span class="badge">없음</span>전/월세 대출 잔액</a>
-                          <a  class="collection-item"><span class="badge">없음</span>적금 잔액</a>
-                          <a class="collection-item"><span class="badge">없음</span>펀드 잔액</a>
-                          <a  class="collection-item"><span class="badge">없음</span>신용대출 잔액</a>
-                          <a class="collection-item">주택 담보대출 잔액<span class="new badge red" data-badge-caption="만원">1억55만원</span>
+
+
+                             <a  class="collection-item">월총저축액<span class="new badge red" data-badge-caption="" >{{user.M_TOT_SAVING}}</span></a>
+
+
+                          <a class="collection-item"><span class="badge">{{user.M_JEOK}}</span>월저축액 적금</a>
+                          <a class="collection-item"><span class="badge">{{user.CHUNG_Y}}</span>청약보유여부</a>
+                          <a class="collection-item"><span class="badge">{{user.M_FUND_STOCK}}</span>월저축액 펀드 주식</a>
+                          <a class="collection-item"><span class="badge">{{user.M_FUND}}</span>월저축액 펀드</a>
+                          <a class="collection-item"><span class="badge">{{user.M_STOCK}}</span>월저축액 주식</a>
+                          <a class="collection-item"><span class="badge">{{user.M_SAVING_INSUR}}</span>월저축액 저축성보험</a>
+                          <a class="collection-item"><span class="badge">{{user.M_CHUNG}}</span>월저축액 청약</a>
+                     <a  class="collection-item">부채잔액<span class="new badge red" data-badge-caption="">{{user.TOT_DEBT}}</span></a>
+
+                          <a class="collection-item"><span class="badge">{{user.D_SHINYONG}}</span>부채잔액 신용대출</a>
+                          <a class="collection-item"><span class="badge">{{user.D_DAMBO}}</span>부채잔액 담보대출</a>
+                          <a class="collection-item"><span class="badge">{{user.D_JUTEAKDAMBO}}</span>부채잔액 아파트</a>
+                          <a class="collection-item"><span class="badge">{{user.D_JEONSEA}}</span>부채잔액 전세자금대출</a>
+                          <a class="collection-item"><span class="badge">{{user.RETIRE_NEED}}</span>은퇴후필요자금</a>
+                          <a class="collection-item"><span class="badge">{{user.FOR_RETIRE}}</span>노후자금융 월저축액</a>
+
+
+  <a  class="collection-item">금융상품잔액 정기예금<span class="new badge red" data-badge-caption="">{{user.TOT_YEA}}</span></a>
+
+                                       <a  class="collection-item">금융상품잔액 적금<span class="new badge red" data-badge-caption="" >{{user.TOT_JEOK}}</span></a>
+
+                                       <a  class="collection-item">금융상품잔액 청약<span class="new badge red" data-badge-caption="">{{user.TOT_CHUNG}}</span></a>
+
+                                       <a  class="collection-item">금융상품잔액 펀드<span class="new badge red" data-badge-caption="">{{user.TOT_FUND}}</span></a>
+
+                                      <a  class="collection-item">금융상품잔액 ELS/DLS/ETF<span class="new badge red" data-badge-caption="">{{user.TOT_ELS_ETE}}</span></a>
+
+
+                                       <a  class="collection-item">월총소비금액<span class="new badge red" data-badge-caption="">{{user.TOT_SOBI}}</span></a>
+
+                                        <a class="collection-item">월평균카드사용금액<span class="new badge red" data-badge-caption="">{{user.M_CRD_SPD}}</span></a>
+
+
 
                           </a></div>
 					</div>
@@ -74,18 +103,51 @@
 					</div>
 					<div class="card-image">
 							 	  <div class="collection">
-						  <a  class="collection-item">월 적립식 저축액<span class="new badge red" data-badge-caption="만원">13</span></a>
-                          <a class="collection-item"><span class="badge">없음</span>월 펀드 저축액</a>
 
-						  <a  class="collection-item"><span class="badge">미보유</span>청약 통장 보유 여부</a>
-				      <a  class="collection-item"><span class="badge">없음</span>마이너스 통장 잔액</a>
-                          <a  class="collection-item"><span class="badge">없음</span>전/월세 대출 잔액</a>
-                          <a  class="collection-item"><span class="badge">없음</span>적금 잔액</a>
-                          <a class="collection-item"><span class="badge">없음</span>펀드 잔액</a>
-                          <a  class="collection-item"><span class="badge">없음</span>신용대출 잔액</a>
-                          <a class="collection-item">주택 담보대출 잔액<span class="new badge red" data-badge-caption="만원">1억55만원</span>
+                                        <a  class="collection-item">월총저축액<span class="new badge red" data-badge-caption="" >{{cmp.M_TOT_SAVING__avg}}</span></a>
 
-                          </a></div>
+                          <a class="collection-item"><span class="badge">{{cmp.M_JEOK__avg}}</span>월저축액 적금</a>
+                          <a class="collection-item"><span class="badge">{{cmp.CHUNG_Y__avg}}</span>청약보유여부</a>
+                          <a class="collection-item"><span class="badge">{{cmp.M_FUND_STOCK__avg}}</span>월저축액 펀드 주식</a>
+                          <a class="collection-item"><span class="badge">{{cmp.M_FUND__avg}}</span>월저축액 펀드</a>
+                          <a class="collection-item"><span class="badge">{{cmp.M_STOCK__avg}}</span>월저축액 주식</a>
+                          <a class="collection-item"><span class="badge">{{cmp.M_SAVING_INSUR__avg}}</span>월저축액 저축성보험</a>
+                          <a class="collection-item"><span class="badge">{{cmp.M_CHUNG__avg}}</span>월저축액 청약</a>
+                                      {% if cmp.M_CHUNG__avg == "없음" %}
+
+                                      <a class="collection-item"><span class="badge">{{cmp.TOT_DEBT__avg}}</span>부채잔액</a>
+                                      {% else %}
+                                      <a  class="collection-item">부채잔액<span class="new badge red" data-badge-caption="" >{{cmp.TOT_DEBT__avg}}</span></a>
+                                      {% endif %}
+
+
+
+                          <a class="collection-item"><span class="badge">{{cmp.D_SHINYONG__avg}}</span>부채잔액 신용대출</a>
+                          <a class="collection-item"><span class="badge">{{cmp.D_DAMBO__avg}}</span>부채잔액 담보대출</a>
+                          <a class="collection-item"><span class="badge">{{cmp.D_JUTEAKDAMBO__avg}}</span>부채잔액 아파트</a>
+                          <a class="collection-item"><span class="badge">{{cmp.D_JEONSEA__avg}}</span>부채잔액 전세자금대출</a>
+                          <a class="collection-item"><span class="badge">{{cmp.RETIRE_NEED__avg}}</span>은퇴후필요자금</a>
+                          <a class="collection-item"><span class="badge">{{cmp.FOR_RETIRE__avg}}</span>노후자금융 월저축액</a>
+
+
+
+
+                                      <a  class="collection-item">금융상품잔액 정기예금<span class="new badge red" data-badge-caption="">{{cmp.TOT_YEA__avg}}</span></a>
+
+                                       <a  class="collection-item">금융상품잔액 적금<span class="new badge red" data-badge-caption="" >{{cmp.TOT_JEOK__avg}}</span></a>
+
+                                       <a  class="collection-item">금융상품잔액 청약<span class="new badge red" data-badge-caption="">{{cmp.TOT_CHUNG__avg}}</span></a>
+
+                                       <a  class="collection-item">금융상품잔액 펀드<span class="new badge red" data-badge-caption="">{{cmp.TOT_FUND__avg}}</span></a>
+
+                                      <a  class="collection-item">금융상품잔액 ELS/DLS/ETF<span class="new badge red" data-badge-caption="">{{cmp.TOT_ELS_ETE__avg}}</span></a>
+
+
+                                       <a  class="collection-item">월총소비금액<span class="new badge red" data-badge-caption="">{{cmp.TOT_SOBI__avg}}</span></a>
+
+                                        <a class="collection-item">월평균카드사용금액<span class="new badge red" data-badge-caption="">{{cmp.M_CRD_SPD__avg}}</span></a>
+
+                                  </div>
 
 					</div>
 
@@ -98,34 +160,9 @@
 
        </row>
 
-    <!--row-->
 
-    <row>
-     <div class="col-md-6">
-          <div class="tile">
-            <h2 class="tile-title">월별 패턴 비교</h2>
-            <div class="embed-responsive embed-responsive-16by9">
-              <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
-            </div>
-          </div>
-              <div class="alert alert-success">
-                <strong>Note !</strong> 나: Gray, 나와 같은 사람들 : Black
-            </div>
-        </div>
 
-     <div class="col-md-6">
-          <div class="tile">
-            <h2 class="tile-title">빈도수 </h2>
-            <div class="embed-responsive embed-responsive-16by9">
-              <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
-            </div>
-          </div>
-         	<div class="alert alert-info">
-									<strong>Note !</strong> 나: Gray, 나와 같은 사람들 : Black
-								</div>
 
-        </div>
-    </row>
 
 
         <!---------------------------------------------------------------->

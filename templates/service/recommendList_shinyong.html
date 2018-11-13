@@ -1,0 +1,82 @@
+{% extends "../base.html" %}
+
+{% block sidebar %}
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name">John Doe</p>
+          <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
+        </div>
+      </div>
+     <ul class="app-menu">
+        <li><a class="app-menu__item" href="/service/yniAverage"><span class="app-menu__label">나와 같은 사람들의 평균생활</span></a></li>
+   <li><a class="app-menu__item" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
+        <li><a class="app-menu__item" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
+         <li><a class="app-menu__item active" href="/service/productList"><span class="app-menu__label">베스트 상품 정보</span></a></li>
+      </ul>
+    </aside>
+
+{% endblock %}
+
+
+    {% block content %}
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-th-list"></i>'신용대출' 인기순위 10</h1>
+          <p>당신의 금융생활을 분석한 결과 '신용대출'이 가장 적합합니다.</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item active"><a href="#">베스트 상품 정보</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-body">
+              <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                  <tr>
+                      <th>순위</th>
+                    <th>금융회사</th>
+                    <th>대출종류</th>
+                      <th>금리구분</th>
+                      <th>신용등급 1~2등급</th>
+                    <th>신용등급 3~4등급</th>
+                    <th>신용등급 5~6등급</th>
+                    <th>신용등급 7~8등급</th>
+                    <th>신용등급 9~10등급</th>
+                    <th>신용등급 평균금리</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+
+                {% for data in result %}
+
+   <tr>
+       <td>{{forloop.counter}}</td>
+      <td>{{data.co_nm}}</td>
+      <td>{{data.type}}</td>
+        <td>{{data.money}}</td>
+       <td>{{data.case1}}</td>
+      <td>{{data.case2}}</td>
+       <td>{{data.case3}}</td>
+      <td>{{data.case4}}</td>
+       <td>{{data.case5}}</td>
+      <td>{{data.case6}}</td>
+
+   </tr>
+
+{% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}

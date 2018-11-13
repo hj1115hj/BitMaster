@@ -15,6 +15,7 @@ def joinform(request):
 def join(request):
     user = User()
     user.name = request.POST['name']
+
     user.email = request.POST['email']
     user.password = request.POST['password']
     user.gender = request.POST['gender']
@@ -58,8 +59,16 @@ def logout(request):
 def mypage(request):
     # guestbook_list = Guestbook1.objects.all().order_by('-regdate')
     # context = {'guestbook_list': guestbook_list}
-
-    return render(request, 'user/mypage.html')  # mypage.html 로 이동
+    # 로그인된 객체를 가져온다.
+    #idx = request.session['authuser']['idx']
+    # result =User.objects.filter(idx= idx)
+    #
+    # user = result[0]
+    # authuser=model_to_dict(user)
+    # print(authuser)
+    content ={'user' : request.session['authuser']}
+    print(content)
+    return render(request, 'user/mypage.html',content)  # mypage.html 로 이동
 
 
 def mypage_submit(request):
@@ -75,15 +84,16 @@ def mypage_submit(request):
 
     print(user.name)
 
-    user.SEX_GBN = request.POST.get('optionsRadios-SEX_GBN', '0')
-    user.AGE_GBN = request.POST.get('optionsRadios-AGE_GBN', '0')
+    user.SEX_GBN = request.POST.get('SEX_GBN', '0')
+    user.AGE_GBN = request.POST.get('AGE_GBN', '0')
+
     user.JOB_GBN = request.POST.get('JOB_GBN', '0')
     user.ADD_GBN = request.POST.get('ADD_GBN', '0')
     user.INCOME_GBN = request.POST.get('INCOME_GBN', '0')
     user.MARRY_Y = request.POST.get('MARRY_Y', '0')
     user.DOUBLE_IN = request.POST.get('DOUBLE_IN', '0')
     user.NUMCHILD = request.POST.get('NUMCHILD', '0')
-    user.TOT_ASSET = request.POST.get('TOT_ASSET', '0')
+    user.TOT_ASSET  =request.POST.get('TOT_ASSET','0')
     user.ASS_FIN = request.POST.get('ASS_FIN', '0')
     user.ASS_REAL = request.POST.get('ASS_REAL', '0')
     user.ASS_ETC = request.POST.get('ASS_ETC', '0')
@@ -109,9 +119,9 @@ def mypage_submit(request):
     user.TOT_ELS_ETE = request.POST.get('TOT_ELS_ETE', '0')
     user.TOT_SOBI = request.POST.get('TOT_SOBI', '0')
     user.M_CRD_SPD = request.POST.get('M_CRD_SPD', '0')
-    print(user.SEX_GBN)
-    print(user.AGE_GBN)
-    print(user.JOB_GBN)
-    print(user.ADD_GBN)
+    user.Check_field = 1
+    # 유저세션 업데이트
     user.save()
+    request.session['authuser'] = model_to_dict(user)
+
     return HttpResponseRedirect('/user/mypage')

@@ -12,13 +12,12 @@
         </div>
       </div>
      <ul class="app-menu">
-        <li><a class="app-menu__item active" href="/service/yniAverage"><span class="app-menu__label">나와 같은 사람들의 평균생활</span></a></li>
+        <li><a class="app-menu__item" id ="yniAverage" href="/service/yniAverage"><span class="app-menu__label">나와 같은 사람들의 평균생활</span></a></li>
 
-   <li><a class="app-menu__item" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
+   <li><a class="app-menu__item" id ="yniCompare" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
 
-        <li><a class="app-menu__item" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
+        <li><a class="app-menu__item"  id ="yniScore"  href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
 
-         <li>  <a class="app-menu__item" href="#" data-toggle="modal" data-target="#myModal" ><span class="app-menu__label">Open Modal</span></a></li>
       </ul>
     </aside>
 
@@ -28,26 +27,6 @@
 {% block content %}
    <main class="app-content">
 
-  <!-- Modal -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-
-      <!-- Modal content-->
-
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-
-
-</div>
                <!--여기에 문서를 입력하시오-->
         <!--d-->
         <div class="row user">
@@ -93,20 +72,21 @@
                                         <label for="inputName"><legend>이름</legend></label>
 
 
-                            <input class="form-control" id="inputName" type="text">
+                            <input class="form-control" id="inputName" type="text" name= "name"value="{{user.name}}">
                         </div>
 	            <fieldset class="form-group">
                     <label for="SEX_GBN"><legend>성별</legend></label>
 
 
                               <p>
-      <input id="SEX_GBN_1" type="radio" name="optionsRadios-SEX_GBN" value="1" />
-     <label   for="SEX_GBN_1">여</label>
+      <input id="SEX_GBN_1" type="radio" name="SEX_GBN"  value="1" />
+     <label   for="SEX_GBN_1">남</label>
     </p>
     <p>
-      <input id="SEX_GBN_2" type="radio" name="optionsRadios-SEX_GBN" value="2"  />
-      <label for="SEX_GBN_2">남</label>
+      <input id="SEX_GBN_2" type="radio" name="SEX_GBN"  value="2"  />
+      <label for="SEX_GBN_2">여</label>
     </p>
+
 
                         </fieldset>
 
@@ -114,26 +94,26 @@
                                <label for="AGE_GBN"><legend>나이</legend></label>
 
                             <p>
-                          <input id="AGE_GBN_1" type="radio" name="optionsRadios-AGE_GBN" value="2" />
+                          <input id="AGE_GBN_1" type="radio" name="AGE_GBN" value="1" />
                               <label   for="AGE_GBN_1">20-29세</label>
                             </p>
 
                                  <p>
-                          <input id="AGE_GBN_2" type="radio" name="optionsRadios-AGE_GBN" value="3" />
+                          <input id="AGE_GBN_2" type="radio" name="AGE_GBN" value="2"  />
                               <label   for="AGE_GBN_2">30-39세</label>
                             </p>
                                                <p>
-                          <input id="AGE_GBN_3" type="radio"name="optionsRadios-AGE_GBN"  value="4" />
+                          <input id="AGE_GBN_3" type="radio"name="AGE_GBN"  value="3"  />
                               <label   for="AGE_GBN_3">40-49세</label>
                             </p>
 
                                                             <p>
-                          <input id="AGE_GBN_4" type="radio"name="optionsRadios-AGE_GBN"   value="5" />
+                          <input id="AGE_GBN_4" type="radio"name="AGE_GBN"   value="4"  />
                               <label   for="AGE_GBN_4">50-59세</label>
                             </p>
 
                             <p>
-                          <input id="AGE_GBN_5" type="radio" name="optionsRadios-AGE_GBN"   value="6" />
+                          <input id="AGE_GBN_5" type="radio" name="AGE_GBN"   value="5" />
                               <label   for="AGE_GBN_5">60세 이상</label>
                             </p>
 
@@ -145,58 +125,58 @@
                         <div class="form-group">
                             <label for="JOB_GBN"><legend>직업 구분</legend></label>
 
-                    <select class="form-control" id="JOB_GBN" multiple="">
-                                <option>기타</option>
-                                <option>사무직</option>
-                                <option>공무원</option>
-                                <option>전문직(근로직)</option>
-                                <option>전문직(자영업)</option>
-                                <option>판매서비스</option>
-                                <option>기능직</option>
-                                <option>일반 자영업</option>
-                                <option>프리랜서</option>
-                                <option>대학원생 기타</option>
+                    <select class="form-control" id="JOB_GBN" name = "JOB_GBN"multiple="">
+                                <option value ="1">기타</option>
+                                <option value ="2">사무직</option>
+                                <option value ="3">공무원</option>
+                                <option value ="4">전문직(근로직)</option>
+                                <option value ="5">전문직(자영업)</option>
+                                <option value ="6">판매서비스</option>
+                                <option value ="7">기능직</option>
+                                <option value ="8">일반 자영업</option>
+                                <option value ="9">프리랜서</option>
+                                <option value ="10">학생</option>
                     </select>
                          </div>
                         <div class="form-group">
                         <label for="ADD_GBN"><legend>지역구분</legend></label>
-                                <select class="form-control" id="ADD_GBN" multiple="">
+                                <select class="form-control" id="ADD_GBN"  name ="ADD_GBN" multiple="">
 
-                                <option>강남3구_송파, 강남, 서초</option>
-                                <option>서울 기타</option>
-                                <option>광역시</option>
-                                <option>경기도</option>
-                                <option>기타</option>
+                                <option value ="1" >강남3구_송파, 강남, 서초</option>
+                                <option value ="2" >서울 기타</option>
+                                <option value ="3" >광역시</option>
+                                <option value ="4">경기도</option>
+                                <option value ="5">기타</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                         <label for="INCOME_GBN"><legend>가구소득구간</legend></label>
 
-                            <select class="form-control" id="INCOME_GBN" multiple="">
+                            <select class="form-control" id="INCOME_GBN" name="INCOME_GBN" multiple="">
 
-                                <option>100만원 미만</option>
-                                <option>200만원 미만</option>
-                                <option>300만원 미만</option>
-                                <option>400만원 미만</option>
-                                <option>500만원 미만</option>
-                                <option>600만원 미만</option>
-                                <option>700만원 이상</option>
+                                <option value ="1">100만원 미만</option>
+                                <option value ="2">200만원 미만</option>
+                                <option value ="3">300만원 미만</option>
+                                <option value ="4">400만원 미만</option>
+                                <option value ="5">500만원 미만</option>
+                                <option value ="6">600만원 미만</option>
+                                <option value ="7">700만원 이상</option>
                             </select>
                         </div>
 
                         <fieldset class="form-group">
                             <legend>결혼여부</legend>
                             <p>
-                          <input id="MARRY_Y_1" type="radio" name="optionsRadios-MARRY_Y"   value="1" />
+                          <input id="MARRY_Y_1" type="radio" name="MARRY_Y"   value="1" />
                               <label   for="MARRY_Y_1">미혼</label>
                             </p>
                                        <p>
-                          <input id="MARRY_Y_2" type="radio" name="optionsRadios-MARRY_Y"   value="2" />
+                          <input id="MARRY_Y_2" type="radio" name="MARRY_Y"   value="2" />
                               <label   for="MARRY_Y_2">기혼</label>
                             </p>
                                        <p>
-                          <input id="MARRY_Y_3" type="radio" name="optionsRadios-MARRY_Y"   value="2" />
+                          <input id="MARRY_Y_3" type="radio" name="MARRY_Y"   value="0" />
                               <label   for="MARRY_Y_3">미응답</label>
                             </p>
 
@@ -205,15 +185,15 @@
                         <fieldset class="form-group">
                             <legend>맞벌이</legend>
                                            <p>
-                          <input id="DOUBLE_IN_1" type="radio"  name="optionsRadios-DOUBLE_IN"   value="2" />
+                          <input id="DOUBLE_IN_1" type="radio"  name="DOUBLE_IN"   value="1" />
                               <label   for="DOUBLE_IN_1">외벌이</label>
                             </p>
                                            <p>
-                          <input id="DOUBLE_IN_2" type="radio" name="optionsRadios-DOUBLE_IN"   value="2" />
+                          <input id="DOUBLE_IN_2" type="radio" name="DOUBLE_IN"   value="2" />
                               <label   for="DOUBLE_IN_2">맞벌이</label>
                             </p>
                                            <p>
-                          <input id="DOUBLE_IN_3" type="radio"  name="optionsRadios-DOUBLE_IN"  value="2" />
+                          <input id="DOUBLE_IN_3" type="radio"  name="DOUBLE_IN"  value="0" />
                               <label   for="DOUBLE_IN_3">미응답</label>
                             </p>
 
@@ -222,21 +202,22 @@
 
                         <fieldset class="form-group">
                             <legend>자녀수</legend>
-                            <p>
-                          <input id="NUMCHILD_0" type="radio"  name="optionsRadios-NUMCHILD"   value="0" />
-                              <label   for="NUMCHILD_0">미응답</label>
-                            </p>
+
                                 <p>
-                          <input id="NUMCHILD_1" type="radio"  name="optionsRadios-NUMCHILD"   value="0" />
+                          <input id="NUMCHILD_1" type="radio"  name="NUMCHILD"   value="1" />
                               <label   for="NUMCHILD_1">1명</label>
                             </p>
                                 <p>
-                          <input id="NUMCHILD_2" type="radio"  name="optionsRadios-NUMCHILD"   value="0" />
+                          <input id="NUMCHILD_2" type="radio"  name="NUMCHILD"   value="2" />
                               <label   for="NUMCHILD_2">2명</label>
                             </p>
                                 <p>
-                          <input id="NUMCHILD_3" type="radio"  name="optionsRadios-NUMCHILD"   value="0" />
+                          <input id="NUMCHILD_3" type="radio"  name="NUMCHILD"   value="3" />
                               <label   for="NUMCHILD_3">3명 이상</label>
+                            </p>
+                                 <p>
+                          <input id="NUMCHILD_0" type="radio"  name="NUMCHILD"   value="0" />
+                              <label   for="NUMCHILD_0">미응답</label>
                             </p>
 
 
@@ -247,137 +228,137 @@
 
                         <div class="form-group">
                             <label class="col-form-label" for="TOT_ASSET">총자산</label>
-                            <input class="form-control" id="TOT_ASSET" type="text">
+                            <input class="form-control" id="TOT_ASSET"  name ="TOT_ASSET" type="text" value="{{user.TOT_ASSET}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="ASS_FIN">금융자산</label>
-                            <input class="form-control" id="ASS_FIN" type="text">
+                            <input class="form-control" id="ASS_FIN" name ="ASS_FIN" type="text" value="{{user.ASS_FIN}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="ASS_REAL">부동산자산</label>
-                            <input class="form-control" id="ASS_REAL" type="text">
+                            <input class="form-control" id="ASS_REAL" name ="ASS_REAL"  type="text"value="{{user.ASS_REAL}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="ASS_ETC">기타자산</label>
-                            <input class="form-control" id="ASS_ETC" type="text">
+                            <input class="form-control" id="ASS_ETC"  name="ASS_ETC"type="text"value="{{user.ASS_ETC}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="M_TOT_SAVING">월 총저축액</label>
-                            <input class="form-control" id="M_TOT_SAVING" type="text">
+                            <input class="form-control" id="M_TOT_SAVING"  name="M_TOT_SAVING" type="text"value="{{user.M_TOT_SAVING}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="M_JEOK">월 총저축액_적금</label>
-                            <input class="form-control" id="M_JEOK" type="text">
+                            <input class="form-control" id="M_JEOK" name="M_JEOK" type="text"value="{{user.M_JEOK}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="CHUNG_Y">청약보유여부</label>
-                            <input class="form-control" id="CHUNG_Y" type="text">
+                            <input class="form-control" id="CHUNG_Y"  name="CHUNG_Y" type="text"value="{{user.CHUNG_Y}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="M_FUND_STOCK">월 저축액_펀드/주식</label>
-                            <input class="form-control" id="M_FUND_STOCK" type="text">
+                            <input class="form-control" id="M_FUND_STOCK"  name="M_FUND_STOCK"  type="text"value="{{user.M_FUND_STOCK}}">
                         </div>
 
                         <!--...-->
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">월 총저축액_펀드</label>
-                            <input class="form-control" id="M_FUND" type="text">
+                            <input class="form-control" id="M_FUND" name="M_FUND" type="text"value="{{user.M_FUND}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">월 총저축액_주식</label>
-                            <input class="form-control" id="M_STOCK" type="text">
+                            <input class="form-control" id="M_STOCK" name="M_STOCK" type="text"value="{{user.M_STOCK}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">월 총저축액_저축성보험</label>
-                            <input class="form-control" id="M_SAVING_INSUR" type="text">
+                            <input class="form-control" id="M_SAVING_INSUR"name="M_SAVING_INSUR" type="text"value="{{user.M_SAVING_INSUR}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">월 총저축액_청약</label>
-                            <input class="form-control" id="M_CHUNG" type="text">
+                            <input class="form-control" id="M_CHUNG" name="M_CHUNG" type="text"value="{{user.M_CHUNG}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">부채잔액</label>
-                            <input class="form-control" id="TOT_DEBT" type="text">
+                            <input class="form-control" id="TOT_DEBT" name="TOT_DEBT" type="text"value="{{user.TOT_DEBT}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">부채잔액_신용대출</label>
-                            <input class="form-control" id="D_SHINYONG" type="text">
+                            <input class="form-control" id="D_SHINYONG" name="D_SHINYONG" type="text"value="{{user.D_SHINYONG}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">부채잔액_담보대출</label>
-                            <input class="form-control" id="D_DAMBO" type="text">
+                            <input class="form-control" id="D_DAMBO" name="D_DAMBO"type="text"value="{{user.D_DAMBO}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">부채잔액_아파트/주택담보대출</label>
-                            <input class="form-control" id="D_JUTEAKDAMBO" type="text">
+                            <input class="form-control" id="D_JUTEAKDAMBO" name="D_JUTEAKDAMBO" type="text"value="{{user.D_JUTEAKDAMBO}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">부채잔액_전세자금대출</label>
-                            <input class="form-control" id="D_JEONSEA" type="text">
+                            <input class="form-control" id="D_JEONSEA" name="D_JEONSEA" type="text"value="{{user.D_JEONSEA}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">은퇴후 필요자금</label>
-                            <input class="form-control" id="RETIRE_NEED" type="text">
+                            <input class="form-control" id="RETIRE_NEED" name="RETIRE_NEED" type="text"value="{{user.RETIRE_NEED}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">노후자금용 월저축액</label>
-                            <input class="form-control" id="FOR_RETIRE" type="text">
+                            <input class="form-control" id="FOR_RETIRE" name="FOR_RETIRE" type="text"value="{{user.FOR_RETIRE}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">금융상품 잔액_정기예금</label>
-                            <input class="form-control" id="TOT_YEA" type="text">
+                            <input class="form-control" id="TOT_YEA" name="TOT_YEA"type="text"value="{{user.TOT_YEA}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">금융상품 잔액_적금</label>
-                            <input class="form-control" id="TOT_JEOK" type="text">
+                            <input class="form-control" id="TOT_JEOK" name="TOT_JEOK"type="text"value="{{user.TOT_JEOK}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">금융상품 잔액_청약</label>
-                            <input class="form-control" id="TOT_CHUNG" type="text">
+                            <input class="form-control" id="TOT_CHUNG" name="TOT_CHUNG" type="text"value="{{user.TOT_CHUNG}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">금융상품 잔액_펀드</label>
-                            <input class="form-control" id="TOT_FUND" type="text">
+                            <input class="form-control" id="TOT_FUND" name="TOT_FUND" type="text"value="{{user.TOT_FUND}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">금융상품 잔액_ELS/DLS/ETF 등</label>
-                            <input class="form-control" id="TOT_ELS_ETE" type="text">
+                            <input class="form-control" id="TOT_ELS_ETE" name="TOT_ELS_ETE"type="text"value="{{user.TOT_ELS_ETE}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">월 총소비금액</label>
-                            <input class="form-control" id="TOT_SOBI" type="text">
+                            <input class="form-control" id="TOT_SOBI" name="TOT_SOBI" type="text"value="{{user.TOT_SOBI}}">
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">월 평균 카드사용금액</label>
-                            <input class="form-control" id="M_CRD_SPD" type="text">
+                            <input class="form-control" id="M_CRD_SPD" name="M_CRD_SPD" type="text"value="{{user.M_CRD_SPD}}">
                         </div>
 
                         <!--제출버튼  -->
-                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary" id="mypage_submit" type="submit">Submit</button>
 
                     </form>
                   </div>
@@ -407,3 +388,211 @@
 
 
 
+{% block  script%}
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+
+        // JQuery code to be added in here.
+
+
+        $("#yniAverage").click(function(event){
+
+       if({{user.Check_field}} ==  0 ){
+
+            alert("프로필을 완성해주세요.");
+
+            return false;
+        }
+            return true;
+
+        });
+
+        $("#yniCompare").click(function(event){
+
+       if({{user.Check_field}} ==  0 ){
+
+            alert("프로필을 완성해주세요.");
+
+            return false;
+        }
+            return true;
+
+        });
+
+
+        $("#yniScore").click(function(event){
+
+       if({{user.Check_field}} ==  0 ){
+
+            alert("프로필을 완성해주세요.");
+
+            return false;
+        }
+            return true;
+
+        });
+
+
+
+       $("#mypage_submit").submit(function(event){
+         event.preventDefault();
+
+
+        if( $(this).find('[name="name"]').val() =='')
+        {
+         alert("이름을 입력하세요");
+         return false;
+
+        }
+         if( $(this).find('[name="SEX_GBN"]').is(":checked") ==false)
+        {
+         alert("성별을 선택하세요");
+         return false;
+
+        }
+
+        if( $(this).find('[name="AGE_GBN"]').is(":checked") ==false)
+        {
+        alert("나이를 선택하세요");
+         return false;
+
+        }
+        if( $(this).find('[name="JOB_GBN"]').val() == undefined)
+        {
+         alert("직업을 선택하세요");
+         return false;
+
+        }
+        if( $(this).find('[name="ADD_GBN"]').val() == undefined)
+        {
+         alert("지역을 선택하세요");
+         return false;
+
+        }
+        if( $(this).find('[name="INCOME_GBN"]').val() == undefined)
+        {
+         alert("가구소득을 선택하세요");
+         return false;
+
+        }
+
+
+        if( $(this).find('[name="ASS_FIN"]').val() ==0)
+        {
+         alert("금융자산을 입력하세요");
+         return false;
+
+        }
+
+
+        if( $(this).find('[name="M_TOT_SAVING"]').val() ==0)
+        {
+         alert("월 총저축액을 입력하세요");
+         return false;
+
+        }
+
+
+        if( $(this).find('[name="TOT_SOBI"]').val() ==0)
+        {
+         alert("월 총소비금액을 입력하세요");
+         return false;
+
+        }
+        alert("프로필을 수정하겠습니까?");
+
+       return true;
+    });
+
+
+    $('input:radio[name="SEX_GBN"]').each(function() {
+            if(this.value == {{user.SEX_GBN}}){ //값 비교
+
+            this.checked = true; //checked 처리
+
+     }
+
+   });
+
+        $('input:radio[name="AGE_GBN"]').each(function() {
+            if(this.value == {{user.AGE_GBN}}){ //값 비교
+
+            this.checked = true; //checked 처리
+
+    }
+
+   });
+
+
+  $('#JOB_GBN option').each(function() {
+
+    if($(this).val() == {{user.JOB_GBN}}) {
+
+        $(this).prop("selected", true);
+
+    }
+   });
+
+   $('#ADD_GBN option').each(function() {
+
+    if($(this).val() == {{user.ADD_GBN}}) {
+
+        $(this).prop("selected", true);
+
+    }
+   });
+
+
+
+     $('#INCOME_GBN option').each(function() {
+
+    if($(this).val() == {{user.INCOME_GBN}}) {
+
+        $(this).prop("selected", true);
+
+    }
+   });
+
+
+     $('input:radio[name="MARRY_Y"]').each(function() {
+            if(this.value == {{user.MARRY_Y}}){ //값 비교
+
+            this.checked = true; //checked 처리
+
+     }
+
+   });
+
+     $('input:radio[name="DOUBLE_IN"]').each(function() {
+            if(this.value == {{user.DOUBLE_IN}}){ //값 비교
+
+            this.checked = true; //checked 처리
+
+    }
+
+   });
+
+     $('input:radio[name="NUMCHILD"]').each(function() {
+            if(this.value == {{user.NUMCHILD}}){ //값 비교
+
+            this.checked = true; //checked 처리
+
+      }
+
+   });
+
+
+
+
+
+
+
+});
+
+
+
+
+</script>
+{% endblock %}
