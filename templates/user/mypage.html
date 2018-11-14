@@ -1,13 +1,11 @@
 {% extends "../base.html" %}
 
-
-
 {% block sidebar %}
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"  alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">John Doe</p>
+          <p class="app-sidebar__user-name">{{ request.session.authuser.id }}</p>
           <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
         </div>
       </div>
@@ -17,7 +15,7 @@
    <li><a class="app-menu__item" id ="yniCompare" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
 
         <li><a class="app-menu__item"  id ="yniScore"  href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
-
+  <li><a class="app-menu__item" id ="recomend" href="/service/productList"><span class="app-menu__label">베스트 상품 추천</span></a></li>
       </ul>
     </aside>
 
@@ -32,9 +30,10 @@
         <div class="row user">
             <div class="col-md-12">
               <div class="profile">
-                <div class="info"><img class="user-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg">
-                  <h4>John Doe</h4>
-                  <p>FrontEnd Developer</p>
+
+                        <div class="info"><img class="user-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" >
+                  <h4>{{ request.session.authuser.name }}님 프로필</h4>
+                  <p>반갑습니다!</p>
                 </div>
                 <div class="cover-image"></div>
               </div>
@@ -65,7 +64,10 @@
         <div class="row">
             <div class="col-md-12">
               <div class="tile">
+
                 <div class="row">
+
+
                   <div class="col-lg-6">
                     <form id="login-form" name="mypage" method="post" action="/user/mypage_submit">{% csrf_token %}
                         <div class="form-group">
@@ -75,7 +77,8 @@
                             <input class="form-control" id="inputName" type="text" name= "name"value="{{user.name}}">
                         </div>
 	            <fieldset class="form-group">
-                    <label for="SEX_GBN"><legend>성별</legend></label>
+
+                    <label for="SEX_GBN" ><legend>*성별</legend></label>
 
 
                               <p>
@@ -91,7 +94,7 @@
                         </fieldset>
 
                         <fieldset class="form-group">
-                               <label for="AGE_GBN"><legend>나이</legend></label>
+                               <label for="AGE_GBN"><legend>*나이</legend></label>
 
                             <p>
                           <input id="AGE_GBN_1" type="radio" name="AGE_GBN" value="1" />
@@ -123,7 +126,7 @@
 
 
                         <div class="form-group">
-                            <label for="JOB_GBN"><legend>직업 구분</legend></label>
+                            <label for="JOB_GBN"><legend>*직업 구분</legend></label>
 
                     <select class="form-control" id="JOB_GBN" name = "JOB_GBN"multiple="">
                                 <option value ="1">기타</option>
@@ -139,7 +142,7 @@
                     </select>
                          </div>
                         <div class="form-group">
-                        <label for="ADD_GBN"><legend>지역구분</legend></label>
+                        <label for="ADD_GBN"><legend>*지역구분</legend></label>
                                 <select class="form-control" id="ADD_GBN"  name ="ADD_GBN" multiple="">
 
                                 <option value ="1" >강남3구_송파, 강남, 서초</option>
@@ -151,7 +154,7 @@
                         </div>
 
                         <div class="form-group">
-                        <label for="INCOME_GBN"><legend>가구소득구간</legend></label>
+                        <label for="INCOME_GBN"><legend>*가구소득구간</legend></label>
 
                             <select class="form-control" id="INCOME_GBN" name="INCOME_GBN" multiple="">
 
@@ -166,7 +169,7 @@
                         </div>
 
                         <fieldset class="form-group">
-                            <legend>결혼여부</legend>
+                            <legend>*결혼여부</legend>
                             <p>
                           <input id="MARRY_Y_1" type="radio" name="MARRY_Y"   value="1" />
                               <label   for="MARRY_Y_1">미혼</label>
@@ -227,12 +230,12 @@
                         </fieldset>
 
                         <div class="form-group">
-                            <label class="col-form-label" for="TOT_ASSET">총자산</label>
+                            <label class="col-form-label" for="TOT_ASSET">*총자산</label>
                             <input class="form-control" id="TOT_ASSET"  name ="TOT_ASSET" type="text" value="{{user.TOT_ASSET}}">
                         </div>
 
                         <div class="form-group">
-                            <label class="col-form-label" for="ASS_FIN">금융자산</label>
+                            <label class="col-form-label" for="ASS_FIN">*금융자산</label>
                             <input class="form-control" id="ASS_FIN" name ="ASS_FIN" type="text" value="{{user.ASS_FIN}}">
                         </div>
 
@@ -245,9 +248,17 @@
                             <label class="col-form-label" for="ASS_ETC">기타자산</label>
                             <input class="form-control" id="ASS_ETC"  name="ASS_ETC"type="text"value="{{user.ASS_ETC}}">
                         </div>
+     <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">*월 총소비금액</label>
+                            <input class="form-control" id="TOT_SOBI" name="TOT_SOBI" type="text"value="{{user.TOT_SOBI}}">
+                        </div>
 
                         <div class="form-group">
-                            <label class="col-form-label" for="M_TOT_SAVING">월 총저축액</label>
+                            <label class="col-form-label" for="inputDefault">월 평균 카드사용금액</label>
+                            <input class="form-control" id="M_CRD_SPD" name="M_CRD_SPD" type="text"value="{{user.M_CRD_SPD}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="M_TOT_SAVING">*월 총저축액</label>
                             <input class="form-control" id="M_TOT_SAVING"  name="M_TOT_SAVING" type="text"value="{{user.M_TOT_SAVING}}">
                         </div>
 
@@ -257,7 +268,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-form-label" for="CHUNG_Y">청약보유여부</label>
+                            <label class="col-form-label" for="CHUNG_Y">*청약보유여부</label>
                             <input class="form-control" id="CHUNG_Y"  name="CHUNG_Y" type="text"value="{{user.CHUNG_Y}}">
                         </div>
 
@@ -288,7 +299,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">부채잔액</label>
+                            <label class="col-form-label" for="inputDefault">*부채잔액</label>
                             <input class="form-control" id="TOT_DEBT" name="TOT_DEBT" type="text"value="{{user.TOT_DEBT}}">
                         </div>
 
@@ -303,7 +314,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">부채잔액_아파트/주택담보대출</label>
+                            <label class="col-form-label" for="inputDefault">*부채잔액_아파트/주택담보대출</label>
                             <input class="form-control" id="D_JUTEAKDAMBO" name="D_JUTEAKDAMBO" type="text"value="{{user.D_JUTEAKDAMBO}}">
                         </div>
 
@@ -313,12 +324,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">은퇴후 필요자금</label>
+                            <label class="col-form-label" for="inputDefault">*은퇴후 필요자금</label>
                             <input class="form-control" id="RETIRE_NEED" name="RETIRE_NEED" type="text"value="{{user.RETIRE_NEED}}">
                         </div>
 
                         <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">노후자금용 월저축액</label>
+                            <label class="col-form-label" for="inputDefault">*노후자금용 월저축액</label>
                             <input class="form-control" id="FOR_RETIRE" name="FOR_RETIRE" type="text"value="{{user.FOR_RETIRE}}">
                         </div>
 
@@ -347,15 +358,7 @@
                             <input class="form-control" id="TOT_ELS_ETE" name="TOT_ELS_ETE"type="text"value="{{user.TOT_ELS_ETE}}">
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">월 총소비금액</label>
-                            <input class="form-control" id="TOT_SOBI" name="TOT_SOBI" type="text"value="{{user.TOT_SOBI}}">
-                        </div>
 
-                        <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">월 평균 카드사용금액</label>
-                            <input class="form-control" id="M_CRD_SPD" name="M_CRD_SPD" type="text"value="{{user.M_CRD_SPD}}">
-                        </div>
 
                         <!--제출버튼  -->
                             <button class="btn btn-primary" id="mypage_submit" type="submit">Submit</button>
@@ -396,6 +399,7 @@ $(document).ready(function() {
 
         // JQuery code to be added in here.
 
+alert("*부분은 필수로 입력!")
 
         $("#yniAverage").click(function(event){
 
@@ -433,19 +437,23 @@ $(document).ready(function() {
             return true;
 
         });
+     $("#recomend").click(function(event){
 
+       if({{user.Check_field}} ==  0 ){
+
+            alert("프로필을 완성해주세요.");
+
+            return false;
+        }
+            return true;
+
+        });
 
 
        $("#mypage_submit").submit(function(event){
          event.preventDefault();
 
 
-        if( $(this).find('[name="name"]').val() =='')
-        {
-         alert("이름을 입력하세요");
-         return false;
-
-        }
          if( $(this).find('[name="SEX_GBN"]').is(":checked") ==false)
         {
          alert("성별을 선택하세요");
@@ -479,14 +487,27 @@ $(document).ready(function() {
         }
 
 
+        if( $(this).find('[name="TOT_ASSET"]').val() ==0)
+        {
+         alert("총자산을 입력하세요");
+         return false;
+
+        }
+
+
+
         if( $(this).find('[name="ASS_FIN"]').val() ==0)
         {
          alert("금융자산을 입력하세요");
          return false;
 
         }
+     if( $(this).find('[name="TOT_SOBI"]').val() ==0)
+        {
+         alert("월 총소비금액을 입력하세요");
+         return false;
 
-
+        }
         if( $(this).find('[name="M_TOT_SAVING"]').val() ==0)
         {
          alert("월 총저축액을 입력하세요");
@@ -494,13 +515,37 @@ $(document).ready(function() {
 
         }
 
-
-        if( $(this).find('[name="TOT_SOBI"]').val() ==0)
+        if( $(this).find('[name="CHUNG_Y"]').val() ==0)
         {
-         alert("월 총소비금액을 입력하세요");
+         alert("청약보유여부을 입력하세요");
          return false;
 
         }
+           if( $(this).find('[name="TOT_DEBT"]').val() ==0)
+        {
+         alert("부채잔액을 입력하세요");
+         return false;
+
+        }
+          if( $(this).find('[name="D_JUTEAKDAMBO"]').val() ==0)
+        {
+         alert("부채잔액_아파트/주택담보대출을 입력하세요");
+         return false;
+
+        }
+                if( $(this).find('[name="RETIRE_NEED"]').val() ==0)
+        {
+         alert("은퇴후 필요자금을 입력하세요");
+         return false;
+
+        }
+          if( $(this).find('[name="FOR_RETIRE"]').val() ==0)
+        {
+         alert("노후자금용 월저축액 입력하세요");
+         return false;
+
+        }
+
         alert("프로필을 수정하겠습니까?");
 
        return true;

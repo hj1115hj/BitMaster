@@ -108,16 +108,18 @@ def yeaDriver():
     driver = webdriver.Chrome(chrome_path)
     # driver = webdriver.Chrome('/Users/user/Downloads/chromedriver_win32')
     ## 암묵적으로 웹 자원 로드를 위해 3초까지 기다려 준다.
-    driver.implicitly_wait(3)
+    driver.implicitly_wait(2)
 
     driver.maximize_window()
     driver.get('http://finlife.fss.or.kr/deposit/selectDeposit.do?menuId=2000100')
     element = driver.find_element_by_id('saving-money01')
-    driver.execute_script("arguments[0].setAttribute('value','20000000')", element)
+    driver.execute_script("arguments[0].setAttribute('value','2000000')", element)
 
+
+    driver.find_element_by_xpath('//*[@id="contents"]/div[2]/div[1]/div[2]/ul/li[2]/button').click()
     driver.find_element_by_xpath('//*[@id="contents"]/div[2]/div[1]/button').click()
 
-    time.sleep(5)  # 5초 대기
+    time.sleep(1)  # 5초 대기
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
@@ -188,13 +190,13 @@ def renteDriver():
     driver = webdriver.Chrome(chrome_path)
     # driver = webdriver.Chrome('/Users/user/Downloads/chromedriver_win32')
     ## 암묵적으로 웹 자원 로드를 위해 3초까지 기다려 준다.
-    driver.implicitly_wait(3)
+    driver.implicitly_wait(2)
 
     driver.maximize_window()
     driver.get('http://finlife.fss.or.kr/annuitysaving/selectAnnuitySaving.do?menuId=2000107')
     driver.find_element_by_xpath('//*[@id="contents"]/div[2]/div[4]/div[2]/ul/li[2]/button').click()
     driver.find_element_by_xpath('//*[@id="contents"]/div[2]/div[4]/button').click()
-    time.sleep(5)  # 5초 대기
+    time.sleep(1)  # 5초 대기
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
@@ -222,6 +224,7 @@ def renteDriver():
                 data_list.append(r_dict)
 
 
-    print(data_list)
+    #print(data_list)
+    driver.quit()  # 브라우저 종료
     return data_list
 

@@ -1,13 +1,14 @@
 {% extends "../base.html" %}
 
+
 {% block sidebar %}
 
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"  alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">John Doe</p>
+          <p class="app-sidebar__user-name">{{ request.session.authuser.id }}</p>
           <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
         </div>
       </div>
@@ -17,7 +18,8 @@
    <li><a class="app-menu__item" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
 
         <li><a class="app-menu__item active" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
-      </ul>
+    <li><a class="app-menu__item" href="/service/productList"><span class="app-menu__label">베스트 상품 추천</span></a></li>
+     </ul>
     </aside>
 
 
@@ -29,7 +31,7 @@
           <div class="app-title">
         <div>
           <h1><i class="fa fa-dashboard"></i> 나의 금융생활 점수는?</h1>
-          <p>나의 금융자산, 월 저축 금액, 월 소비금액을 비교해 보세요!</p>
+          <p>나의 금융자산, 월 저축 금액, 월 소비금액을 점수를 통해 알아보세요!</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -47,11 +49,20 @@
 						<div class="card-content white-text">
 
 						  <span class="card-title">금융자산</span>
-						  <p>나와 같은 사람들의 평균 금융 자산</p>
+						  <p>* 나와 같은 사람들의 평균 금융 자산</p>
                             <h3>{{detail_avg.ASS_FIN__avg}} 만원</h3>
 
+                 <!--<h4>{{ request.session.authuser.name }}님의 금융 자산</h4>-->
 
-                       <h4>{{user_info.ass_fin}} 만원</h4>
+                       <!--<h4>{{user_info.ass_fin}} 만원</h4>-->
+
+						</div>
+
+                       		<div class="card-content white-text">
+
+                 <p>* {{ request.session.authuser.name }}님의 금융 자산</p>
+
+                       <h3>{{user_info.ass_fin}} 만원</h3>
 
 						</div>
 						<div class="card-action">
@@ -68,10 +79,17 @@
                    <div class="card">
 						<div class="card-content">
 						  <span class="card-title">월 저축 금액</span>
-						  <p>나와 같은 사람들의 월 저축 금액</p>
+						  <p>* 나와 같은 사람들의 월 저축 금액<p>
                             <h3>{{detail_avg.M_TOT_SAVING__avg}} 만원</h3>
 
-                       <h4>{{user_info.m_tot_saving}} 만원</h4>
+						</div>
+
+                                		<div class="card-content">
+
+                 <p>* {{ request.session.authuser.name }}님의 월 저축 금액</p>
+
+                       <h3>{{user_info.m_tot_saving}} 만원</h3>
+
 						</div>
 						<div class="card-action">
 				        <a href="/user/mypage">내정보 수정하기</a>
@@ -83,10 +101,16 @@
                         <div class="card blue-grey darken-1">
 						<div class="card-content white-text">
 						  <span class="card-title">월 소비 금액</span>
-						  <p>나와 같은 사람들의 평균 월 소비 금액</p>
+						  <p>* 나와 같은 사람들의 평균 월 소비 금액</p>
                             <h3>{{detail_avg.TOT_SOBI__avg}} 만원</h3>
 
-                           <h4>{{user_info.tot_sobi}} 만원</h4>
+						</div>
+                            <div class="card-content white-text">
+
+                 <p>* {{ request.session.authuser.name }}님의 월 소비 금액</p>
+
+                       <h3>{{user_info.tot_sobi}} 만원</h3>
+
 						</div>
 						<div class="card-action">
 					        <a href="/user/mypage">내정보 수정하기</a>
@@ -102,16 +126,16 @@
                       <div class="col-md-4 col-sm-4">
 
 								<div class="card-panel text-center">
-											<h4>51점</h4>
-											<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
+											<h4>나의 금융자산 점수</h4>
+											<div class="easypiechart" id="easypiechart-blue" data-percent="{{score.ASS_FIN_score}}" ><span class="percent">{{score.ASS_FIN_score}}점</span>
 											</div>
                                 </div>
 
                     </div>
                  <div class="col-md-4 col-sm-4">
 								<div class="card-panel text-center">
-											<h4>63점</h4>
-											<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
+											<h4>나의 월 저축 금액 점수</h4>
+											<div class="easypiechart" id="easypiechart-red" data-percent="{{score.M_TOT_SAVING_score}}" ><span class="percent">{{score.M_TOT_SAVING_score}}점</span>
 											</div>
 										</div>
 
@@ -119,8 +143,8 @@
                    <div class="col-md-4 col-sm-4">
 
 				           <div class="card-panel text-center">
-											<h4>62점</h4>
-											<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
+											<h4>나의 월 소비 금액 점수</h4>
+											<div class="easypiechart" id="easypiechart-teal" data-percent="{{score.TOT_SOBI_score}}" ><span class="percent">{{score.TOT_SOBI_score}}점</span>
 											</div>
 										</div>
 
@@ -133,57 +157,33 @@
         </div>
 
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-action">
-                            Basic Tabs
+                            점수 산출 방법
                         </div>
                         <div class="card-content">
 							 <ul class="collapsible" data-collapsible="accordion">
 								<li>
-								  <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-								  <div class="collapsible-body"><p>Tt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..</p></div>
+								  <div class="collapsible-header"><i class="material-icons">filter_drama</i>금융자산 점수 산출방법</div>
+								  <div class="collapsible-body"><p>나와 비슷한 사람들(성별,나이,가구소득)구간의 평균으로, 나와 비슷한 사람들의 평균 금융자산 대비 나의 금융자산을 산출하여 점수를 계산하였습니다.</p></div>
 								</li>
 								<li>
-								  <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-								  <div class="collapsible-body"><p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+								  <div class="collapsible-header"><i class="material-icons">place</i>월 저축 금액 점수 산출방법</div>
+								  <div class="collapsible-body"><p>나와 비슷한 사람들(성별,나이,가구소득)구간의 평균으로, 나와 비슷한 사람들의 평균 월저축금액 대비 나의 월저축금액을 산출하여 점수를 계산하였습니다.</p></div>
 								</li>
 								<li>
-								  <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-								  <div class="collapsible-body"><p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+								  <div class="collapsible-header"><i class="material-icons">whatshot</i>월 소비 금액 점수 산출방법</div>
+								  <div class="collapsible-body"><p>나와 비슷한 사람들(성별,나이,가구소득)구간의 평균으로, 나와 비슷한 사람들의 평균 월소비금액 대비 나의 월소비금액을 산출하여 점수를 계산하였습니다.</p></div>
 								</li>
 							  </ul>
 
                             </div>
                         </div>
                     </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="card">
-                        <div class="card-action">
-                            Tabs
-                        </div>
-                        <div class="card-content">
-                           <div class="col">
-							  <ul class="tabs">
-								<li class="tab col s3"><a href="#test1">Test 1</a></li>
-								<li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-								<li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-								<li class="tab col s3"><a href="#test4">Test 4</a></li>
-							  </ul>
-							</div>
-							<div class="clearBoth"><br/></div>
-							<div id="test1" class="col s12"><p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-							<div id="test2" class="col s12"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-							<div id="test3" class="col s12"><p>Bpsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-							<div id="test4" class="col s12"><p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
-                           <div class="clearBoth"><br/></div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
-                    <!-- /. ROW  -->
-				<footer><p>Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-</p></footer>
+
 					</div>
 
         <!---------------------------------------------------------------->

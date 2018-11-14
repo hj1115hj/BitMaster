@@ -1,11 +1,12 @@
 {% extends "../base.html" %}
 
+
 {% block sidebar %}
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"  alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">John Doe</p>
+          <p class="app-sidebar__user-name">{{ request.session.authuser.id }}</p>
           <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
         </div>
       </div>
@@ -13,7 +14,19 @@
         <li><a class="app-menu__item" href="/service/yniAverage"><span class="app-menu__label">나와 같은 사람들의 평균생활</span></a></li>
    <li><a class="app-menu__item" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
         <li><a class="app-menu__item" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
-         <li><a class="app-menu__item active" href="/service/productList"><span class="app-menu__label">베스트 상품 정보</span></a></li>
+         <li><a class="app-menu__item active" href="/service/productList"><span class="app-menu__label">베스트 상품 추천</span></a></li>
+             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">전체상품보기</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+
+                 <li><a class="treeview-item" href="http://finlife.fss.or.kr/deposit/selectDeposit.do?menuId=2000100" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> 정기예금</a></li>
+                 <li><a class="treeview-item" href="http://finlife.fss.or.kr/installment/selectinstallment.do?menuId=2000101" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> 적금</a></li>
+                 <li><a class="treeview-item" href="http://fundamoa.kofia.or.kr/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> 펀드</a></li>
+                 <li><a class="treeview-item" href="http://finlife.fss.or.kr/mortagageloan/selectMortagageLoan.do?menuId=2000102" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> 대출</a></li>
+                 <li><a class="treeview-item" href="http://finlife.fss.or.kr/annuitysaving/selectAnnuitySaving.do?menuId=2000107" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> 연금</a></li>
+                 <li><a class="treeview-item" href="http://www.e-insmarket.or.kr/mins/minsInsList.knia?prdtSmlClsCd=G001" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> 보험</a></li>
+
+          </ul>
+        </li>
       </ul>
     </aside>
 
@@ -22,16 +35,33 @@
 
     {% block content %}
     <main class="app-content">
-      <div class="app-title">
+        <div class="app-title">
         <div>
-          <h1><i class="fa fa-th-list"></i>'연금저축' 인기순위 10</h1>
-          <p>당신의 금융생활을 분석한 결과 '연금저축'이 가장 적합합니다.</p>
+          <h1><i class="fa fa-th-list"></i>베스트 상품 추천</h1>
+          <p>{{ request.session.authuser.name }}님의 금융생활을 분석한 결과 '연금저축'이 가장 적합합니다.</p>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
           <li class="breadcrumb-item active"><a href="#">베스트 상품 정보</a></li>
         </ul>
       </div>
+          <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <h1 class="mb-3 line-head" id="typography">'연금저축' BEST 10</h1>
+         <div class="bs-component">
+              <blockquote class="blockquote blockquote-reverse">
+                <p>{{ request.session.authuser.name }}님의 금융 생활을 분석한 결과 '연금저축'이 가장 적합합니다. 머신러닝 분석 결과를 통해 {{ request.session.authuser.name }}님께 아래 BEST 10 '연금저축'을 추천합니다!<p>
+                <footer class="blockquote-footer">우리는 {{ request.session.authuser.name }}님의 금융파트너
+                  <cite title="Source Title">금융친구</cite>
+                </footer>
+              </blockquote>
+            </div>
+            </div>
+
+
+        </div>
+          </div>
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
@@ -71,6 +101,53 @@
 {% endfor %}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+          <div class="row">
+          <div class="col-lg-12">
+               <div class="bs-component">
+
+              <h3>{{ request.session.authuser.name }}님과 비슷한 사람들이 관심 있어 하는 상품</h3>
+                   <br>
+              <p class="text-muted">{{ request.session.authuser.name }}님과 비슷한 사람들의 가장 많이 조회한 금융 서비스들 중 TOP4입니다.</p>
+             </div>
+          </div>
+        </div>
+            <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+            <div class="info">
+              <h4>무려 {{num1}}명이나 눈여겨본 상품!</h4>
+                <p><b>연금</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
+                <div class="info">
+           <h4>무려 {{num2}}명이나 눈여겨본 상품!</h4>
+                <p><b>적금</b></p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+              <div class="info">
+           <h4>무려 {{num3}}명이나 눈여겨본 상품!</h4>
+                <p><b>보험</b></p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+           <div class="info">
+           <h4>무려 {{num4}}명이나 눈여겨본 상품!</h4>
+                <p><b>펀드</b></p>
+
             </div>
           </div>
         </div>

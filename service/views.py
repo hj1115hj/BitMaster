@@ -6,8 +6,17 @@ from django.db.models import Q
 from django.db.models import IntegerField
 import numpy
 import parsed as ps
+import pandas as pd
+from sklearn.externals import joblib
+import random
+from scipy.integrate import quad
+
 # Create your views here.
 
+
+def normalProbabilityDensity(x):
+    constant = 1.0 / numpy.sqrt(2*numpy.pi)
+    return(constant * numpy.exp((-x**2) / 2.0) )
 
 
 def yniScore(request):
@@ -44,38 +53,50 @@ def yniScore(request):
                 TOT_SOBI_list.append(value)
 
 
-    print("ass_fin ----------------------------")
-    print(ASS_FIN_list)
-    print("M_TOT_SAVING_list ----------------------------")
-    print(M_TOT_SAVING_list)
-    print("TOT_SOBI_list ----------------------------")
-    print(TOT_SOBI_list)
 
-
-
-
-
-    content = {'detail_avg': result, 'user_info':user_info}
-    print(content)
-
-
+    #금융자산 점수
     ASS_FIN_std = float(numpy.std(ASS_FIN_list))
-    print(ASS_FIN_std)
-    user['ASS_FIN']= float(user['ASS_FIN'])
+
+    user['ASS_FIN'] = float(user['ASS_FIN'])
     result['ASS_FIN__avg'] = float(result['ASS_FIN__avg'])
-    print(user['ASS_FIN'])
-    print(result['ASS_FIN__avg'])
-    #ASS_FIN_score_1 = round( ((user['ASS_FIN']*0.0)-(result['ASS_FIN__avg']-ASS_FIN_std))/2*ASS_FIN_std ) *100
     ASS_FIN_zscore =  (user['ASS_FIN']-result['ASS_FIN__avg'])/ASS_FIN_std
 
-    print(ASS_FIN_zscore)
-    ASS_FIN_score = (ASS_FIN_zscore*20)+100
-    print(ASS_FIN_zscore)
-    print(ASS_FIN_score)
+    ASS_FIN_score, _ = quad(normalProbabilityDensity, numpy.NINF, ASS_FIN_zscore)
+    ASS_FIN_score =round(ASS_FIN_score*100)
 
-    result['ASS_FIN__avg']  =  round(result['ASS_FIN__avg'])
-    result['M_TOT_SAVING__avg']  =  round(result['M_TOT_SAVING__avg'])
-    result['TOT_SOBI__avg']  =  round(result['TOT_SOBI__avg'])
+
+
+    #월 저축예금 M_TOT_SAVING
+    M_TOT_SAVING_std = float(numpy.std(M_TOT_SAVING_list))
+
+    user['M_TOT_SAVING'] = float(user['M_TOT_SAVING'])
+    result['M_TOT_SAVING__avg'] = float(result['M_TOT_SAVING__avg'])
+    M_TOT_SAVING_zscore = (user['M_TOT_SAVING'] - result['M_TOT_SAVING__avg']) / M_TOT_SAVING_std
+
+    M_TOT_SAVING_score, _ = quad(normalProbabilityDensity, numpy.NINF, M_TOT_SAVING_zscore)
+    M_TOT_SAVING_score = round(M_TOT_SAVING_score * 100)
+
+    # 월 소비금액 TOT_SOBI
+    TOT_SOBI_std = float(numpy.std(TOT_SOBI_list))
+
+    user['TOT_SOBI'] = float(user['TOT_SOBI'])
+    result['TOT_SOBI__avg'] = float(result['TOT_SOBI__avg'])
+    TOT_SOBI_zscore = (user['TOT_SOBI'] - result['TOT_SOBI__avg']) / TOT_SOBI_std
+
+    TOT_SOBI_score, _ = quad(normalProbabilityDensity, numpy.NINF, TOT_SOBI_zscore)
+    TOT_SOBI_score = round(TOT_SOBI_score * 100)
+
+
+    score ={'ASS_FIN_score':ASS_FIN_score,'M_TOT_SAVING_score':M_TOT_SAVING_score,'TOT_SOBI_score':(100-TOT_SOBI_score)}
+
+    print(score)
+    result['ASS_FIN__avg'] = round(result['ASS_FIN__avg'])
+    result['M_TOT_SAVING__avg'] = round(result['M_TOT_SAVING__avg'])
+    result['TOT_SOBI__avg'] = round(result['TOT_SOBI__avg'])
+
+    content = {'detail_avg': result, 'user_info':user_info,'score':score}
+
+
     return render(request, 'service/yniScore.html',content)
 
 
@@ -121,7 +142,7 @@ def yniCompare(request):
     print(user)
 
     for key in user.keys():
-        if user[key] == '0':
+        if user[key] == 0:
             user[key] = '없음'
         else:
             user[key] = str(user[key])+' 만원'
@@ -227,28 +248,66 @@ def yniAverage(request):
     result =User.objects.filter(SEX_GBN= sex_gbn, AGE_GBN= age_gbn,INCOME_GBN =income_gbn)\
         .aggregate(Avg('ASS_FIN'),Avg('M_TOT_SAVING'),Avg('TOT_SOBI'))
 
+
+
     result['ASS_FIN__avg']  =  round(result['ASS_FIN__avg'])
     result['M_TOT_SAVING__avg']  =  round(result['M_TOT_SAVING__avg'])
     result['TOT_SOBI__avg']  =  round(result['TOT_SOBI__avg'])
+
+
+
 
     content = {'detail_avg': result, 'double_result':double_result, 'job_gbn_result':job_gbn_result,
                'add_gbn_result':add_gbn_result,'marry_y_result':marry_y_result,
                'numchild_result':numchild_cnt,'total_result':total_result,'user_info':user_info
                }
 
-    print(result)
-    print(content)
+
+
     return render(request, 'service/yniAverage.html', content)
 
 
 def productList(request):
     dic={}
-    pnum = request.session['authuser']['Product']
-    print("pnum %s" %pnum)
-    pnum = 4
+    # pnum = request.session['authuser']['Product']
+    # print("pnum %s" %pnum)
+    # pnum = 4
 
+    # Load from file
+    joblib_model = joblib.load("joblib_model.pkl")
+
+
+    user = request.session['authuser']
+    train = {'AGE_GBN': [user['AGE_GBN']],
+             "MARRY_Y": [user['MARRY_Y']],
+             "JOB_GBN": [user['JOB_GBN']],
+             "ADD_GBN": [user['ADD_GBN']],
+             "INCOME_GBN": [user['INCOME_GBN']],
+             "NUMCHILD": [user['NUMCHILD']],
+             'TOT_ASSET': [user['TOT_ASSET']],
+             'CHUNG_Y': [user['CHUNG_Y']],
+             'TOT_DEBT': [user['TOT_DEBT']],
+             'D_JUTEAKDAMBO': user['D_JUTEAKDAMBO'],
+             'RETIRE_NEED': user['RETIRE_NEED'],
+             'FOR_RETIRE': [user['FOR_RETIRE']],
+             'TOT_SOBI': [user['TOT_SOBI']]}
+
+    print(train)
+    train = pd.DataFrame(train)
+
+    Y_predict = joblib_model.predict(train)
+    print(Y_predict)
+    pnum = Y_predict
+    print(pnum)
+    dic['num1'] = random.randrange(101, 150)
+    dic['num2'] = random.randrange(51, 100)
+    dic['num3'] = random.randrange(31, 50)
+    dic['num4'] = random.randrange(10, 30)
+
+    pnum=5
     if pnum == 2 or pnum == 1 or pnum == 7:
         dic['result'] = ps.yeaDriver()
+
         content = dic
         return render(request, 'service/recommendList_yea.html', content)
     elif pnum == 3:

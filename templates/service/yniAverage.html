@@ -1,11 +1,12 @@
 {% extends "../base.html" %}
 
+
 {% block sidebar %}
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"  alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">John Doe</p>
+          <p class="app-sidebar__user-name">{{ request.session.authuser.id }}</p>
           <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
         </div>
       </div>
@@ -13,7 +14,7 @@
         <li><a class="app-menu__item active" href="/service/yniAverage"><span class="app-menu__label">나와 같은 사람들의 평균생활</span></a></li>
    <li><a class="app-menu__item" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
         <li><a class="app-menu__item" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
-         <li><a class="app-menu__item" href="/service/productList"><span class="app-menu__label">베스트 상품 정보</span></a></li>
+         <li><a class="app-menu__item" href="/service/productList"><span class="app-menu__label">베스트 상품 추천</span></a></li>
       </ul>
     </aside>
 
@@ -25,11 +26,11 @@
           <div class="app-title">
         <div>
           <h1><i class="fa fa-dashboard"></i> 나와 같은 사람들의 평균생활은?</h1>
-          <p>나의 금융자산, 월 저축 금액, 월 소비금액을 비교해 보세요!</p>
+          <p>나의 금융자산, 월 저축 금액, 월 소비금액을 백분률로 비교해 보세요!</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="#">나의 금융생활 점수는?</a></li>
+          <li class="breadcrumb-item"><a href="#">나와 같은 사람들의 평균생활</a></li>
         </ul>
       </div>
 
@@ -147,7 +148,8 @@
        		<div class="col-md-4 col-sm-4">
 
 								<div class="card-panel text-center">
-											<h4>나와 같은 직업 비중</h4>
+											<h4>나와 같은 직업 비중 :{{user_info.job}} </h4>
+
 											<div class="easypiechart" id="easypiechart-blue" data-percent="{{job_gbn_result}}" ><span class="percent">{{job_gbn_result}}%</span>
 											</div>
                                 </div>
@@ -161,7 +163,8 @@
                     <div class="col-md-4 col-sm-4">
 
 						<div class="card-panel text-center">
-											<h4>나와 같은 지역 비중</h4>
+											<h4>나와 같은 지역 비중 :{{user_info.add}} </h4>
+
 											<div class="easypiechart" id="easypiechart-red" data-percent="{{add_gbn_result}}" ><span class="percent">{{add_gbn_result}}%</span>
 											</div>
 
@@ -192,14 +195,14 @@
     		<div class="col-md-4 col-sm-4">
 
 										<div class="card-panel text-center">
-											<h4>결혼 여부</h4>
+											<h4>기혼 여부</h4>
 											<div class="easypiechart" id="easypiechart-orange" data-percent="{{marry_y_result}}" ><span class="percent">{{marry_y_result}}%</span>
 											</div>
 										</div>
                 </div>
               <div class="col-md-4 col-sm-4">
 								<div class="card-panel text-center">
-											<h4>평균 자녀수</h4>
+											<h4>기혼가정 평균 자녀수</h4>
 											<div class="easypiechart" id="easypiechart-red"><span class="percent">{{numchild_result}}명</span>
 											</div>
 										</div>
@@ -236,11 +239,7 @@
                             <h3>{{detail_avg.ASS_FIN__avg}}만원</h3>
 
 <br><br>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-    <span class="sr-only">80% Complete</span>
-  </div>
-</div>
+
     </div>
 
 
@@ -259,11 +258,7 @@
 
 <br><br>
 
-                            <div class="progress progress-striped">
-  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-    <span class="sr-only">60% Complete (warning)</span>
-  </div>
-</div>
+
     </div>
 
 
@@ -278,11 +273,7 @@
                             <h3>{{detail_avg.TOT_SOBI__avg }}만원</h3>
 
 <br><br>
-                       <div class="progress progress-striped">
-  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-    <span class="sr-only">40% Complete (success)</span>
-  </div>
-</div>
+
 
 						</div>
 

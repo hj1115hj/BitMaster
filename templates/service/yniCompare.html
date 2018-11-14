@@ -1,12 +1,12 @@
 {% extends "../base.html" %}
+
 {% block sidebar %}
-    <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"  alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">John Doe</p>
-          <p class="app-sidebar__user-designation">{{ request.session.authuser.name }}님 안녕하세요 ^^;</p>
+          <p class="app-sidebar__user-name">{{ request.session.authuser.id }}</p>
+          <p class="app-sidebar__user-designation">{{request.session.authuser.name}}님 안녕하세요 ^^;</p>
         </div>
       </div>
      <ul class="app-menu">
@@ -14,9 +14,12 @@
 
    <li><a class="app-menu__item active" href="/service/yniCompare"><span class="app-menu__label">나 VS 나와 같은 사람</span></a></li>
 
-        <li><a class="app-menu__item" href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
-      </ul>
+        <li><a class="app-menu__item " href="/service/yniScore"><span class="app-menu__label">나의 금융생활 점수는?</span></a></li>
+    <li><a class="app-menu__item" href="/service/productList"><span class="app-menu__label">베스트 상품 추천</span></a></li>
+     </ul>
     </aside>
+
+
 {% endblock %}
 {% block content %}
     <main class="app-content">
@@ -27,7 +30,7 @@
            <div class="app-title">
         <div>
           <h1><i class="fa fa-th-list"></i>나 vs 나와 같은 사람</h1>
-          <p>나와 같은 사람들의 전체 은행 거래와 나의 거래을 비교해 보세요.</p>
+          <p>나와 같은 사람들의 평균과 나의 금융거래내역을 비교해 보세요.</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -43,6 +46,9 @@
 
 
         <div class="col-md-6">
+            	<div class="alert alert-info">
+									<strong>Note !</strong> 거래내역은 최근 3개월 입금 금액의 평균값입니다.
+								</div>
 						<div class="card"><div class="card-action">
 					  <h2>나의 거래</h2>
 					</div>
@@ -92,12 +98,13 @@
 					</div>
 
 					</div>
-            		<div class="alert alert-info">
-									<strong>Note !</strong> 거래내역은 최근 3개월 입금 금액의 평균값입니다.
-								</div>
+
 
                     </div>
         <div class="col-md-6">
+                       <div class="alert alert-success">
+                <strong>Note !</strong> 조회 기준일: 2017년 10월 17일 | 표시 단위 만원
+            </div>
 						<div class="card"><div class="card-action">
 					  <h2>나와 같은 사람들</h2>
 					</div>
@@ -153,9 +160,7 @@
 
 					</div>
 
-            <div class="alert alert-success">
-                <strong>Note !</strong> 조회 기준일: 2017년 10월 17일 | 표시 단위 만원
-            </div>
+
         </div>
 
        </row>
